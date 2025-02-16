@@ -6,6 +6,7 @@ import { CatalogSection } from "@/features/landing/catalog-section";
 import { CoursesSection } from "@/features/landing/courses-section";
 import { Header } from "@/features/landing/header";
 import { HeroSection } from "@/features/landing/hero-section";
+import { StuctureSection } from "@/features/landing/structure-section";
 
 export default function Landing() {
   return (
@@ -16,6 +17,7 @@ export default function Landing() {
       <CatalogSection />
       <CoursesSection />
       <CadastreSection />
+      <StuctureSection />
     </div>
   );
 }
