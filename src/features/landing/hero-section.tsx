@@ -19,7 +19,9 @@ export function HeroSection() {
             <br /> preço acessível.
           </p>
           <Button className="mt-4 lg:mt-7">
-            Ir para catálogo
+            <p className="font-montserrat font-bold text-white text-sm">
+              Ir para catálogo
+            </p>
             <Stack className="text-white" size={24} />
           </Button>
         </div>

@@ -29,7 +29,9 @@ export function CatalogSection() {
               elevar o padrão dos seus serviços.
             </p>
             <Button className="mt-6">
-              Ir para catálogo
+              <p className="font-montserrat font-bold text-white text-sm">
+                Ir para catálogo
+              </p>
               <Stack className="text-white" size={24} />
             </Button>
           </div>
