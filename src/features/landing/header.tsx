@@ -2,8 +2,10 @@ import { useState } from "react";
 import { LinkHeader } from "@/shared/components/link-header";
 import { User, Stack, List, X } from "@phosphor-icons/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export function Header() {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -13,14 +15,19 @@ export function Header() {
   return (
     <header className="shadow">
       <div className="flex flex-row items-center justify-between container mx-auto px-6 py-4">
-        <Image src="/images/logo.png" width={80} height={80} alt="Logo" />
+        <div onClick={() => router.push("/")} className="cursor-pointer">
+          <Image src="/images/logo.png" width={80} height={80} alt="Logo" />
+        </div>
 
         <div className="hidden lg:block">
           <LinkHeader />
         </div>
 
         <div className="hidden lg:flex flex-row items-center space-x-4">
-          <div className="flex flex-row items-center gap-3 rounded-full border-[1px] h-12 px-5 border-border_primary">
+          <div
+            className="flex flex-row items-center gap-3 rounded-full border-[1px] h-12 px-5 border-border_primary cursor-pointer"
+            onClick={() => router.push("/cadastro")}
+          >
             <p className="font-montserrat font-medium">Cadastre-se</p>
             <User size={24} />
           </div>
@@ -31,7 +38,10 @@ export function Header() {
         </div>
 
         <div className="lg:hidden flex flex-row items-center gap-3">
-          <div className="flex flex-row items-center gap-3 rounded-full border-[1px] h-12 px-5 border-border_primary">
+          <div
+            className="flex flex-row items-center gap-3 rounded-full border-[1px] h-12 px-5 border-border_primary cursor-pointer"
+            onClick={() => router.push("/cadastro")}
+          >
             <p className="font-montserrat font-medium">Cadastre-se</p>
             <User size={24} />
           </div>
