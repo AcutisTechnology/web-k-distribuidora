@@ -3,7 +3,10 @@ import Image from "next/image";
 
 export function CadastreSection() {
   return (
-    <div className="container flex flex-col mx-auto px-6 py-14 justify-around">
+    <div
+      id="cadastre-section"
+      className="container flex flex-col mx-auto px-6 py-14 justify-around"
+    >
       <div className="bg-[#141414] p-6 md:p-12 rounded-3xl relative bg-[url('/images/background-contact.png')] bg-cover bg-center">
         <div className="w-full lg:w-2/3">
           <div className="flex flex-col gap-5">

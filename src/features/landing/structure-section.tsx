@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function StuctureSection() {
   return (
-    <div className="relative overflow-hidden">
+    <div id="structure-section" className="relative overflow-hidden">
       <div className="container flex flex-col mx-auto px-6 py-14">
         <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-16 z-10">
           <div className="flex flex-col gap-5 lg:w-2/3">

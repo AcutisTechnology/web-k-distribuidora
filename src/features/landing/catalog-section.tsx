@@ -4,7 +4,10 @@ import { Button } from "../../shared/components/button";
 
 export function CatalogSection() {
   return (
-    <div className="bg-background_secondary bg-[url('/images/catalog-background.png')] bg-no-repeat bg-cover bg-center">
+    <div
+      id="catalog-section"
+      className="bg-background_secondary bg-[url('/images/catalog-background.png')] bg-no-repeat bg-cover bg-center"
+    >
       <div className="container flex flex-col mx-auto px-4 py-10 md:px-6 md:py-14">
         {/* Seção superior: Texto e imagem dos celulares */}
         <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-16">

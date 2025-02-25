@@ -2,7 +2,10 @@ import Image from "next/image";
 
 export function AboutSection() {
   return (
-    <div className="container flex flex-col lg:flex-row mx-auto px-4 py-10 md:px-6 md:py-14 gap-8 lg:gap-16 justify-between w-full">
+    <div
+      id="about-section"
+      className="container flex flex-col lg:flex-row mx-auto px-4 py-10 md:px-6 md:py-14 gap-8 lg:gap-16 justify-between w-full"
+    >
       <Image
         src="/images/rectangle1.png"
         className="absolute left-0 z-0 hidden lg:block"

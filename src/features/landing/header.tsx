@@ -12,6 +12,15 @@ export function Header() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const scrollToSection = (sectionId: string) => {
+    setTimeout(() => {
+      document
+        .getElementById(sectionId)
+        ?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="shadow">
       <div className="flex flex-row items-center justify-between container mx-auto px-6 py-4">
@@ -31,7 +40,7 @@ export function Header() {
             <p className="font-montserrat font-medium">Cadastre-se</p>
             <User size={24} />
           </div>
-          <div className="flex flex-row items-center gap-3 rounded-full border-[1px] h-12 px-5 border-border_primary bg-primary">
+          <div className="flex flex-row items-center gap-3 rounded-full border-[1px] h-12 px-5 border-border_primary bg-primary cursor-pointer">
             <p className="font-montserrat font-medium text-white">Catálogo</p>
             <Stack className="text-white" size={24} />
           </div>
@@ -53,27 +62,45 @@ export function Header() {
 
       {isMenuOpen && (
         <div className="lg:hidden flex flex-col items-start px-6 space-y-4 my-4">
-          <p className="font-montserrat font-normal text-base text-black">
+          <p
+            className="font-montserrat font-normal text-base text-black cursor-pointer"
+            onClick={() => scrollToSection("about-section")}
+          >
             Quem somos ?
           </p>
           <div className="w-full h-[1px] bg-[#C2B8A6]" />
-          <p className="font-montserrat font-normal text-base text-black">
+          <p
+            className="font-montserrat font-normal text-base text-black cursor-pointer"
+            onClick={() => scrollToSection("catalog-section")}
+          >
             Nosso catálogo
           </p>
           <div className="w-full h-[1px] bg-[#C2B8A6]" />
-          <p className="font-montserrat font-normal text-base text-black">
+          <p
+            className="font-montserrat font-normal text-base text-black cursor-pointer"
+            onClick={() => scrollToSection("courses-section")}
+          >
             Cursos
           </p>
           <div className="w-full h-[1px] bg-[#C2B8A6]" />
-          <p className="font-montserrat font-normal text-base text-black">
+          <p
+            className="font-montserrat font-normal text-base text-black cursor-pointer"
+            onClick={() => scrollToSection("cadastre-section")}
+          >
             Contato
           </p>
           <div className="w-full h-[1px] bg-[#C2B8A6]" />
-          <p className="font-montserrat font-normal text-base text-black">
+          <p
+            className="font-montserrat font-normal text-base text-black cursor-pointer"
+            onClick={() => scrollToSection("diferenciais")}
+          >
             Diferenciais
           </p>
           <div className="w-full h-[1px] bg-[#C2B8A6]" />
-          <p className="font-montserrat font-normal text-base text-black">
+          <p
+            className="font-montserrat font-normal text-base text-black cursor-pointer"
+            onClick={() => scrollToSection("structure-section")}
+          >
             Estrutura
           </p>
           <div className="w-full h-[1px] bg-[#C2B8A6]" />

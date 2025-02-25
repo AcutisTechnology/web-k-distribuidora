@@ -9,7 +9,10 @@ import Image from "next/image";
 
 export function FooterSection() {
   return (
-    <div className="bg-black bg-[url('/images/footer-background.png')] bg-cover bg-center bg-no-repeat">
+    <div
+      id="diferenciais"
+      className="bg-black bg-[url('/images/footer-background.png')] bg-cover bg-center bg-no-repeat"
+    >
       <div className="container flex flex-col mx-auto px-6 py-14">
         <div className="flex flex-col lg:flex-row items-center lg:items-start gap-14">
           <div className="flex-shrink-0">

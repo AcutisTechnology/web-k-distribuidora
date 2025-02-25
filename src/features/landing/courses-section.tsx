@@ -3,7 +3,10 @@ import Image from "next/image";
 
 export function CoursesSection() {
   return (
-    <div className="container flex flex-col mx-auto px-6 py-14 justify-around relative">
+    <div
+      id="courses-section"
+      className="container flex flex-col mx-auto px-6 py-14 justify-around relative"
+    >
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
         <Image
           src="/images/celular-mao.png"
