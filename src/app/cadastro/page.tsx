@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Header } from "@/features/landing/header";
 import { ChevronRight, ChevronDown } from "lucide-react";
@@ -9,6 +9,8 @@ import { CNPJService } from "@/shared/config/cnpj-service";
 import { IMaskInput } from "react-imask";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG } from "@/shared/config/emailjs-config";
 
 // Definindo o schema de validação com Zod
 const formSchema = z.object({
@@ -19,7 +21,7 @@ const formSchema = z.object({
   atividade: z.string().min(3, "Atividade é obrigatória"),
   situacao: z.string().min(3, "Situação é obrigatória"),
   dataAbertura: z.string().min(8, "Data de abertura é obrigatória"),
-  telefone: z.string().min(14, "Telefone inválido").max(15, "Telefone inválido"),
+  telefone: z.string().min(14, "Telefone inválido").max(16, "Telefone inválido"),
   cep: z.string().min(9, "CEP inválido").max(9, "CEP inválido"),
   logradouro: z.string().min(3, "Rua é obrigatória"),
   numero: z.string().optional(),
@@ -27,10 +29,11 @@ const formSchema = z.object({
   bairro: z.string().min(3, "Bairro é obrigatório"),
   cidade: z.string().min(3, "Cidade é obrigatória"),
   uf: z.string().min(2, "UF é obrigatória").max(2, "UF é obrigatória"),
+  instagram: z.string().min(3, "Instagram é obrigatório"),
   nomeProprietario: z.string().min(3, "Nome do proprietário é obrigatório"),
   cpf: z.string().min(14, "CPF inválido").max(14, "CPF inválido"),
   email: z.string().email("E-mail inválido").optional(),
-  telefoneProprietario: z.string().min(14, "Telefone inválido").max(15, "Telefone inválido").optional(),
+  telefoneProprietario: z.string().min(14, "Telefone inválido").max(16, "Telefone inválido").optional(),
   municipio: z.string().optional(),
   solicitante: z.string().optional(),
 });
@@ -43,6 +46,14 @@ export default function RegistrationForm() {
   const [isDisabled, setIsDisabled] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  
+  // Inicializar o EmailJS
+  useEffect(() => {
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+  }, []);
   
   const { 
     control, 
@@ -50,6 +61,7 @@ export default function RegistrationForm() {
     setValue, 
     watch, 
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -70,6 +82,7 @@ export default function RegistrationForm() {
       bairro: "",
       cidade: "",
       uf: "",
+      instagram: "",
       nomeProprietario: "",
       cpf: "",
       email: "",
@@ -87,7 +100,7 @@ export default function RegistrationForm() {
         const data = await CNPJService.fetch(cnpj.replace(/\D/g, ""));
         setValue("nome", data.razao_social);
         setValue("fantasia", data.estabelecimento.nome_fantasia);
-        setValue("telefone", data.estabelecimento.telefone1);
+        setValue("telefone", data.estabelecimento.ddd1 + data.estabelecimento.telefone1);
         setValue("logradouro", data.estabelecimento.logradouro);
         setValue("municipio", data.estabelecimento.estado.nome);
         setValue("uf", data.estabelecimento.estado.sigla);
@@ -113,6 +126,9 @@ export default function RegistrationForm() {
         setIsDisabled(false);
       } catch (error) {
         console.error("Error fetching CNPJ data:", error);
+        // Habilitar o formulário mesmo que o CNPJ não seja encontrado
+        setIsDisabled(false);
+        alert("CNPJ não encontrado ou serviço indisponível. Por favor, preencha os dados manualmente.");
       }
     }
   };
@@ -146,28 +162,156 @@ export default function RegistrationForm() {
     setStep(step - 1);
   };
 
+  // Função para limpar o formulário
+  const resetForm = () => {
+    reset({
+      cnpj: "",
+      nome: "",
+      fantasia: "",
+      natureza: "",
+      atividade: "",
+      situacao: "",
+      dataAbertura: "",
+      telefone: "",
+      cep: "",
+      logradouro: "",
+      numero: "",
+      complemento: "",
+      bairro: "",
+      cidade: "",
+      uf: "",
+      instagram: "",
+      nomeProprietario: "",
+      cpf: "",
+      email: "",
+      telefoneProprietario: "",
+      municipio: "",
+      solicitante: "",
+    });
+    setIsDisabled(true);
+    setStep(1);
+  };
+
   const onSubmit = async (data: FormValues) => {
+    console.log("Formulário enviado com sucesso!", { data });
+    
+    // Verificar se o formulário está habilitado
+    if (isDisabled) {
+      alert("Por favor, preencha o CNPJ para habilitar o formulário.");
+      return;
+    }
+    
+    // Validar campos obrigatórios do terceiro passo
+    const fields = ["nomeProprietario", "cpf", "instagram", "solicitante"];
+    const hasErrors = fields.some(field => !data[field as keyof FormValues] || errors[field as keyof FormValues]);
+    
+    if (hasErrors) {
+      alert("Por favor, preencha todos os campos obrigatórios corretamente antes de enviar.");
+      return;
+    }
+    
     setIsSubmitting(true);
+    setSubmitError(false);
+    setErrorMessage("");
+    setSuccessMessage("");
     
     try {
-      // Simulando uma chamada de API
-      console.log(data);
+      // Preparando os dados para o EmailJS
+      const templateParams = {
+        to_name: "K Distribuidora",
+        from_name: data.nomeProprietario || data.nome,
+        message: `
+DADOS DA EMPRESA:
+CNPJ: ${data.cnpj}
+Razão Social: ${data.nome}
+Nome Fantasia: ${data.fantasia}
+Natureza: ${data.natureza}
+Atividade: ${data.atividade}
+Situação: ${data.situacao}
+Data de Abertura: ${data.dataAbertura}
+Telefone: ${data.telefone}
+
+ENDEREÇO:
+CEP: ${data.cep}
+Logradouro: ${data.logradouro}
+Número: ${data.numero || "N/A"}
+Complemento: ${data.complemento || "N/A"}
+Bairro: ${data.bairro}
+Cidade: ${data.cidade}
+UF: ${data.uf}
+Instagram: ${data.instagram}
+
+DADOS DO PROPRIETÁRIO:
+Nome: ${data.nomeProprietario}
+CPF: ${data.cpf}
+Email: ${data.email || "N/A"}
+Telefone: ${data.telefoneProprietario || "N/A"}
+
+OUTROS DADOS:
+Município: ${data.municipio || "N/A"}
+Solicitante: ${data.solicitante || "N/A"}
+`,
+        // Mantendo os campos individuais para compatibilidade
+        cnpj: data.cnpj,
+        razao_social: data.nome,
+        nome_fantasia: data.fantasia,
+        natureza: data.natureza,
+        atividade: data.atividade,
+        situacao: data.situacao,
+        data_abertura: data.dataAbertura,
+        telefone: data.telefone,
+        cep: data.cep,
+        logradouro: data.logradouro,
+        numero: data.numero || "N/A",
+        complemento: data.complemento || "N/A",
+        bairro: data.bairro,
+        cidade: data.cidade,
+        uf: data.uf,
+        instagram: data.instagram,
+        nome_proprietario: data.nomeProprietario,
+        cpf: data.cpf,
+        email: data.email || "N/A",
+        telefone_proprietario: data.telefoneProprietario || "N/A",
+        municipio: data.municipio || "N/A",
+        solicitante: data.solicitante || "N/A",
+        // Adicionando todos os dados em um formato mais estruturado para garantir que sejam enviados
+        dados_completos: JSON.stringify(data, null, 2)
+      };
       
-      // Aguardar 1.5 segundos para simular o envio
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      console.log('Enviando dados para o EmailJS:', templateParams);
+      
+      // Enviando o email usando EmailJS
+      const response = await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        templateParams,
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+      
+      console.log('Email enviado com sucesso!', response);
       
       // Mostrar mensagem de sucesso
       setSubmitSuccess(true);
+      setSuccessMessage(`Cadastro enviado com sucesso! Em breve entraremos em contato.`);
       
-      // Resetar o estado após 3 segundos
+      // Resetar o formulário e o estado após 5 segundos
       setTimeout(() => {
         setSubmitSuccess(false);
+        setSuccessMessage("");
+        resetForm();
         // Redirecionar para a página inicial ou outra página
         // window.location.href = "/";
-      }, 3000);
+      }, 5000);
     } catch (error) {
       console.error("Erro ao enviar formulário:", error);
-      alert("Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.");
+      setSubmitError(true);
+      setErrorMessage("Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.");
+      
+      // Resetar o estado de erro após 5 segundos
+      setTimeout(() => {
+        setSubmitError(false);
+        setErrorMessage("");
+      }, 5000);
     } finally {
       setIsSubmitting(false);
     }
@@ -357,6 +501,32 @@ export default function RegistrationForm() {
                     disabled={isDisabled}
                   />
                 </div>
+                <div className="space-y-1.5">
+                  <label className="block text-sm font-montserrat font-medium text-[#141414]">
+                    Telefone <span className="text-red-500">*</span>
+                  </label>
+                  <Controller
+                    name="telefone"
+                    control={control}
+                    render={({ field }) => (
+                      <div>
+                        <IMaskInput
+                          mask="(00) 00000-0000"
+                          value={field.value || ''}
+                          unmask={false}
+                          onAccept={(value) => field.onChange(value)}
+                          onBlur={field.onBlur}
+                          className={`w-full px-4 py-2.5 rounded-lg font-montserrat border ${errors.telefone ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-[#d6d6d6] focus:border-[#a89777] focus:ring-[#a89777]'} focus:ring-1`}
+                          placeholder="Digite o telefone"
+                          disabled={isDisabled}
+                        />
+                      </div>
+                    )}
+                  />
+                  {errors.telefone && (
+                    <p className="text-red-500 text-xs mt-1">{errors.telefone.message}</p>
+                  )}
+                </div>
               </div>
             )}
 
@@ -468,8 +638,12 @@ export default function RegistrationForm() {
                     type="text"
                     placeholder="Digite o link do Instagram"
                     className="w-full px-4 py-2.5 rounded-lg font-montserrat border border-[#d6d6d6] focus:border-[#a89777] focus:ring-1 focus:ring-[#a89777]"
+                    {...register("instagram")}
                     disabled={isDisabled}
                   />
+                  {errors.instagram && (
+                    <p className="text-red-500 text-xs mt-1">{errors.instagram.message}</p>
+                  )}
                 </div>
               </div>
             )}
@@ -528,7 +702,7 @@ export default function RegistrationForm() {
                 </div>
                 <div className="space-y-1.5">
                   <label className="block text-sm font-montserrat font-medium text-[#141414]">
-                    Telefone
+                    WhatsApp
                   </label>
                   <Controller
                     name="telefoneProprietario"
@@ -583,6 +757,26 @@ export default function RegistrationForm() {
               </div>
             )}
 
+            {/* Mensagem de sucesso */}
+            {submitSuccess && (
+              <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg mt-6 mb-4 flex items-start">
+                <svg className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>{successMessage}</span>
+              </div>
+            )}
+
+            {/* Mensagem de erro */}
+            {submitError && (
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mt-6 mb-4 flex items-start">
+                <svg className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span>{errorMessage}</span>
+              </div>
+            )}
+
             {/* Botões de navegação */}
             <div className="flex justify-between mt-12">
               {step > 1 && (
@@ -613,7 +807,9 @@ export default function RegistrationForm() {
                     className={`flex items-center px-8 py-3 ${
                       submitSuccess 
                         ? "bg-green-600" 
-                        : "bg-[#a89777] hover:bg-[#97876a]"
+                        : submitError
+                          ? "bg-red-600"
+                          : "bg-[#a89777] hover:bg-[#97876a]"
                     } text-white rounded-lg font-montserrat font-medium transition-colors relative overflow-hidden`}
                   >
                     {isSubmitting ? (
@@ -630,6 +826,13 @@ export default function RegistrationForm() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                         Enviado com sucesso!
+                      </>
+                    ) : submitError ? (
+                      <>
+                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                        Erro ao enviar. Tente novamente.
                       </>
                     ) : (
                       <>
