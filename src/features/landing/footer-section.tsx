@@ -6,7 +6,6 @@ import {
   Gift,
   InstagramLogo,
   WhatsappLogo,
-  EnvelopeSimple,
   MapPin
 } from "@phosphor-icons/react";
 import Image from "next/image";
@@ -121,21 +120,18 @@ export function FooterSection() {
             <div className="flex flex-col gap-4">
               <h3 className="font-syne font-bold text-lg">Contato</h3>
               <div className="flex flex-col gap-3">
-                <a href="https://instagram.com/kdistribuidora" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
+                <a href="https://instagram.com/kicheirodistribuidora" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
                   <InstagramLogo size={20} />
-                  @kdistribuidora
+                  @kicheirodistribuidora
                 </a>
-                <a href="https://wa.me/5583999999999" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
+                <a href="https://wa.me/83994188454" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
                   <WhatsappLogo size={20} />
-                  (83) 99999-9999
-                </a>
-                <a href="mailto:contato@kdistribuidora.com.br" className="flex items-center gap-2 font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
-                  <EnvelopeSimple size={20} />
-                  contato@kdistribuidora.com.br
+                  (83) 99418-8454
                 </a>
                 <div className="flex items-start gap-2 font-montserrat text-sm text-gray-300">
                   <MapPin size={20} className="flex-shrink-0 mt-1" />
-                  <span>Av. Exemplo, 123, Bairro, João Pessoa - PB</span>
+                  <span>Rua Juvenal Mário da Silva, 805 , Manaíra – João Pessoa – Paraíba. 
+                    CEP 58038-480</span>
                 </div>
               </div>
             </div>
