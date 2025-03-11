@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatedContainer, AnimatedSection, slideInLeft, slideInRight } from "@/components/ui/animated-section";
 import { AboutSection } from "@/features/landing/about-section";
 import { CadastreSection } from "@/features/landing/cadastre-section";
 import { CatalogSection } from "@/features/landing/catalog-section";
@@ -11,15 +12,36 @@ import { StuctureSection } from "@/features/landing/structure-section";
 
 export default function Landing() {
   return (
-    <div className="bg-background_primary">
+    <AnimatedContainer className="bg-background_primary" useInView={false}>
       <Header />
-      <HeroSection />
-      <AboutSection />
-      <CatalogSection />
-      <CoursesSection />
-      <CadastreSection />
-      <StuctureSection />
-      <FooterSection />
-    </div>
+      
+      <AnimatedSection useInView={false}>
+        <HeroSection />
+      </AnimatedSection>
+      
+      <AnimatedSection delay={0.2}>
+        <AboutSection />
+      </AnimatedSection>
+      
+      <AnimatedSection variants={slideInRight}>
+        <CatalogSection />
+      </AnimatedSection>
+      
+      <AnimatedSection variants={slideInLeft}>
+        <CoursesSection />
+      </AnimatedSection>
+      
+      <AnimatedSection>
+        <CadastreSection />
+      </AnimatedSection>
+      
+      <AnimatedSection>
+        <StuctureSection />
+      </AnimatedSection>
+      
+      <AnimatedSection>
+        <FooterSection />
+      </AnimatedSection>
+    </AnimatedContainer>
   );
 }

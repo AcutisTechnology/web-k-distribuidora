@@ -3,14 +3,82 @@
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Header } from "@/features/landing/header";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ChevronDown } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { CNPJService } from "@/shared/config/cnpj-service";
+import { IMaskInput } from "react-imask";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+// Definindo o schema de validação com Zod
+const formSchema = z.object({
+  cnpj: z.string().min(18, "CNPJ inválido").max(18, "CNPJ inválido"),
+  nome: z.string().min(3, "Nome é obrigatório"),
+  fantasia: z.string().min(3, "Nome fantasia é obrigatório"),
+  natureza: z.string().min(3, "Natureza é obrigatória"),
+  atividade: z.string().min(3, "Atividade é obrigatória"),
+  situacao: z.string().min(3, "Situação é obrigatória"),
+  dataAbertura: z.string().min(8, "Data de abertura é obrigatória"),
+  telefone: z.string().min(14, "Telefone inválido").max(15, "Telefone inválido"),
+  cep: z.string().min(9, "CEP inválido").max(9, "CEP inválido"),
+  logradouro: z.string().min(3, "Rua é obrigatória"),
+  numero: z.string().optional(),
+  complemento: z.string().optional(),
+  bairro: z.string().min(3, "Bairro é obrigatório"),
+  cidade: z.string().min(3, "Cidade é obrigatória"),
+  uf: z.string().min(2, "UF é obrigatória").max(2, "UF é obrigatória"),
+  nomeProprietario: z.string().min(3, "Nome do proprietário é obrigatório"),
+  cpf: z.string().min(14, "CPF inválido").max(14, "CPF inválido"),
+  email: z.string().email("E-mail inválido").optional(),
+  telefoneProprietario: z.string().min(14, "Telefone inválido").max(15, "Telefone inválido").optional(),
+  municipio: z.string().optional(),
+  solicitante: z.string().optional(),
+});
+
+// Tipo inferido do schema
+type FormValues = z.infer<typeof formSchema>;
 
 export default function RegistrationForm() {
   const [step, setStep] = useState(1);
   const [isDisabled, setIsDisabled] = useState(true);
-  const { control, register, setValue, watch, handleSubmit } = useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  
+  const { 
+    control, 
+    register, 
+    setValue, 
+    watch, 
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    mode: "onBlur",
+    defaultValues: {
+      cnpj: "",
+      nome: "",
+      fantasia: "",
+      natureza: "",
+      atividade: "",
+      situacao: "",
+      dataAbertura: "",
+      telefone: "",
+      cep: "",
+      logradouro: "",
+      numero: "",
+      complemento: "",
+      bairro: "",
+      cidade: "",
+      uf: "",
+      nomeProprietario: "",
+      cpf: "",
+      email: "",
+      telefoneProprietario: "",
+      municipio: "",
+      solicitante: "",
+    }
+  });
+  
   const cnpj = watch("cnpj");
 
   const handleBlur = async () => {
@@ -50,6 +118,27 @@ export default function RegistrationForm() {
   };
 
   const handleNextStep = () => {
+    // Validar campos da etapa atual antes de avançar
+    if (step === 1) {
+      // Validar campos da primeira etapa
+      const fields = ["cnpj", "nome", "fantasia", "natureza", "atividade", "situacao", "dataAbertura", "telefone"];
+      const hasErrors = fields.some(field => errors[field as keyof FormValues]);
+      
+      if (hasErrors) {
+        alert("Por favor, preencha todos os campos obrigatórios corretamente antes de avançar.");
+        return;
+      }
+    } else if (step === 2) {
+      // Validar campos da segunda etapa
+      const fields = ["cep", "logradouro", "bairro", "cidade", "uf"];
+      const hasErrors = fields.some(field => errors[field as keyof FormValues]);
+      
+      if (hasErrors) {
+        alert("Por favor, preencha todos os campos obrigatórios corretamente antes de avançar.");
+        return;
+      }
+    }
+    
     setStep(step + 1);
   };
 
@@ -57,9 +146,31 @@ export default function RegistrationForm() {
     setStep(step - 1);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
+    
+    try {
+      // Simulando uma chamada de API
+      console.log(data);
+      
+      // Aguardar 1.5 segundos para simular o envio
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Mostrar mensagem de sucesso
+      setSubmitSuccess(true);
+      
+      // Resetar o estado após 3 segundos
+      setTimeout(() => {
+        setSubmitSuccess(false);
+        // Redirecionar para a página inicial ou outra página
+        // window.location.href = "/";
+      }, 3000);
+    } catch (error) {
+      console.error("Erro ao enviar formulário:", error);
+      alert("Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -153,15 +264,26 @@ export default function RegistrationForm() {
                     name="cnpj"
                     control={control}
                     render={({ field }) => (
-                      <Input
-                        {...field}
-                        onBlur={handleBlur}
-                        type="text"
-                        placeholder="Digite o CNPJ"
-                        className="w-full px-4 py-2.5 rounded-lg font-montserrat border border-[#d6d6d6] focus:border-[#a89777] focus:ring-1 focus:ring-[#a89777]"
-                      />
+                      <div>
+                        <IMaskInput
+                          mask="00.000.000/0000-00"
+                          value={field.value || ''}
+                          unmask={false}
+                          onAccept={(value) => field.onChange(value)}
+                          onBlur={() => {
+                            field.onBlur();
+                            handleBlur();
+                          }}
+                          className={`w-full px-4 py-2.5 rounded-lg font-montserrat border ${errors.cnpj ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-[#d6d6d6] focus:border-[#a89777] focus:ring-[#a89777]'} focus:ring-1`}
+                          placeholder="Digite o CNPJ"
+                          disabled={false}
+                        />
+                      </div>
                     )}
                   />
+                  {errors.cnpj && (
+                    <p className="text-red-500 text-xs mt-1">{errors.cnpj.message}</p>
+                  )}
                 </div>
                 <div className="space-y-1.5">
                   <label className="block text-sm font-montserrat font-medium text-[#141414]">
@@ -235,18 +357,6 @@ export default function RegistrationForm() {
                     disabled={isDisabled}
                   />
                 </div>
-                <div className="space-y-1.5">
-                  <label className="block text-sm font-montserrat font-medium text-[#141414]">
-                    Telefone <span className="text-red-500">*</span>
-                  </label>
-                  <Input
-                    type="tel"
-                    placeholder="Digite o telefone"
-                    {...register("telefone")}
-                    className="w-full px-4 py-2.5 rounded-lg font-montserrat border border-[#d6d6d6] focus:border-[#a89777] focus:ring-1 focus:ring-[#a89777]"
-                    disabled={isDisabled}
-                  />
-                </div>
               </div>
             )}
 
@@ -256,13 +366,27 @@ export default function RegistrationForm() {
                   <label className="block text-sm font-montserrat font-medium text-[#141414]">
                     CEP <span className="text-red-500">*</span>
                   </label>
-                  <Input
-                    type="text"
-                    {...register("cep")}
-                    placeholder="Digite o CEP"
-                    className="w-full px-4 py-2.5 rounded-lg font-montserrat border border-[#d6d6d6] focus:border-[#a89777] focus:ring-1 focus:ring-[#a89777]"
-                    disabled={isDisabled}
+                  <Controller
+                    name="cep"
+                    control={control}
+                    render={({ field }) => (
+                      <div>
+                        <IMaskInput
+                          mask="00000-000"
+                          value={field.value || ''}
+                          unmask={false}
+                          onAccept={(value) => field.onChange(value)}
+                          onBlur={field.onBlur}
+                          className={`w-full px-4 py-2.5 rounded-lg font-montserrat border ${errors.cep ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-[#d6d6d6] focus:border-[#a89777] focus:ring-[#a89777]'} focus:ring-1`}
+                          placeholder="Digite o CEP"
+                          disabled={isDisabled}
+                        />
+                      </div>
+                    )}
                   />
+                  {errors.cep && (
+                    <p className="text-red-500 text-xs mt-1">{errors.cep.message}</p>
+                  )}
                 </div>
                 <div className="space-y-1.5">
                   <label className="block text-sm font-montserrat font-medium text-[#141414]">
@@ -368,13 +492,27 @@ export default function RegistrationForm() {
                   <label className="block text-sm font-montserrat font-medium text-[#141414]">
                     CPF <span className="text-red-500">*</span>
                   </label>
-                  <Input
-                    type="text"
-                    placeholder="Digite o CPF"
-                    className="w-full px-4 py-2.5 rounded-lg font-montserrat border border-[#d6d6d6] focus:border-[#a89777] focus:ring-1 focus:ring-[#a89777]"
-                    {...register("cpf")}
-                    disabled={isDisabled}
+                  <Controller
+                    name="cpf"
+                    control={control}
+                    render={({ field }) => (
+                      <div>
+                        <IMaskInput
+                          mask="000.000.000-00"
+                          value={field.value || ''}
+                          unmask={false}
+                          onAccept={(value) => field.onChange(value)}
+                          onBlur={field.onBlur}
+                          className={`w-full px-4 py-2.5 rounded-lg font-montserrat border ${errors.cpf ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-[#d6d6d6] focus:border-[#a89777] focus:ring-[#a89777]'} focus:ring-1`}
+                          placeholder="Digite o CPF"
+                          disabled={isDisabled}
+                        />
+                      </div>
+                    )}
                   />
+                  {errors.cpf && (
+                    <p className="text-red-500 text-xs mt-1">{errors.cpf.message}</p>
+                  )}
                 </div>
                 <div className="space-y-1.5">
                   <label className="block text-sm font-montserrat font-medium text-[#141414]">
@@ -392,58 +530,115 @@ export default function RegistrationForm() {
                   <label className="block text-sm font-montserrat font-medium text-[#141414]">
                     Telefone
                   </label>
-                  <Input
-                    type="text"
-                    placeholder="Digite o telefone"
-                    className="w-full px-4 py-2.5 rounded-lg font-montserrat border border-[#d6d6d6] focus:border-[#a89777] focus:ring-1 focus:ring-[#a89777]"
-                    {...register("telefone")}
-                    disabled={isDisabled}
+                  <Controller
+                    name="telefoneProprietario"
+                    control={control}
+                    render={({ field }) => (
+                      <div>
+                        <IMaskInput
+                          mask="(00) 00000-0000"
+                          value={field.value || ''}
+                          unmask={false}
+                          onAccept={(value) => field.onChange(value)}
+                          onBlur={field.onBlur}
+                          className={`w-full px-4 py-2.5 rounded-lg font-montserrat border ${errors.telefoneProprietario ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-[#d6d6d6] focus:border-[#a89777] focus:ring-[#a89777]'} focus:ring-1`}
+                          placeholder="Digite o telefone"
+                          disabled={isDisabled}
+                        />
+                      </div>
+                    )}
                   />
+                  {errors.telefoneProprietario && (
+                    <p className="text-red-500 text-xs mt-1">{errors.telefoneProprietario.message}</p>
+                  )}
                 </div>
                 <div className="space-y-1.5">
                   <label className="block text-sm font-montserrat font-medium text-[#141414]">
                     Solicitante <span className="text-red-500">*</span>
                   </label>
-                  <Input
-                    type="text"
-                    placeholder="Digite o nome do solicitante"
-                    className="w-full px-4 py-2.5 rounded-lg font-montserrat border border-[#d6d6d6] focus:border-[#a89777] focus:ring-1 focus:ring-[#a89777]"
-                    {...register("solicitante")}
-                    disabled={isDisabled}
-                  />
+                  <div className="relative">
+                    <select
+                      {...register("solicitante")}
+                      disabled={isDisabled}
+                      className="w-full px-4 py-2.5 rounded-lg font-montserrat border border-[#d6d6d6] focus:border-[#a89777] focus:ring-1 focus:ring-[#a89777] bg-white appearance-none"
+                    >
+                      <option value="">Nenhum</option>
+                      <option value="Kamalla">Kamalla</option>
+                      <option value="Lucas Iury">Lucas Iury</option>
+                      <option value="Marcos">Marcos</option>
+                      <option value="Neya">Neya</option>
+                      <option value="Patricia">Patricia</option>
+                      <option value="Rayanne">Rayanne</option>
+                      <option value="Cláudio">Cláudio</option>
+                      <option value="Verônica">Verônica</option>
+                    </select>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                      <ChevronDown className="h-4 w-4 text-[#a89777]" />
+                    </div>
+                  </div>
+                  {errors.solicitante && (
+                    <p className="text-red-500 text-xs mt-1">{errors.solicitante.message}</p>
+                  )}
                 </div>
               </div>
             )}
 
-            {/* Navigation Buttons */}
+            {/* Botões de navegação */}
             <div className="flex justify-between mt-12">
               {step > 1 && (
                 <button
                   type="button"
                   onClick={handlePreviousStep}
-                  className="px-6 py-3 bg-[#a89777] text-white font-montserrat rounded-full hover:bg-[#927f5f] flex items-center gap-2 transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center px-6 py-3 bg-white border border-[#a89777] text-[#a89777] rounded-lg font-montserrat font-medium hover:bg-gray-50 transition-colors"
                 >
-                  Etapa anterior
+                  <ChevronRight className="w-5 h-5 mr-2 rotate-180" />
+                  Voltar
                 </button>
               )}
-              {step < 3 ? (
-                <button
-                  type="button"
-                  onClick={handleNextStep}
-                  className="px-6 py-3 bg-[#a89777] text-white font-montserrat rounded-full hover:bg-[#927f5f] flex items-center gap-2 transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled={isDisabled}
-                >
-                  Próxima etapa
-                  <ChevronRight className="h-5 w-5" />
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  className="px-6 py-3 bg-[#a89777] text-white font-montserrat rounded-full hover:bg-[#927f5f] flex items-center gap-2 transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Enviar
-                </button>
-              )}
+              
+              <div className="ml-auto">
+                {step < 3 ? (
+                  <button
+                    type="button"
+                    onClick={handleNextStep}
+                    className="flex items-center px-6 py-3 bg-[#a89777] text-white rounded-lg font-montserrat font-medium hover:bg-[#97876a] transition-colors"
+                  >
+                    Próximo
+                    <ChevronRight className="w-5 h-5 ml-2" />
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`flex items-center px-8 py-3 ${
+                      submitSuccess 
+                        ? "bg-green-600" 
+                        : "bg-[#a89777] hover:bg-[#97876a]"
+                    } text-white rounded-lg font-montserrat font-medium transition-colors relative overflow-hidden`}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Enviando...
+                      </>
+                    ) : submitSuccess ? (
+                      <>
+                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Enviado com sucesso!
+                      </>
+                    ) : (
+                      <>
+                        Finalizar cadastro
+                      </>
+                    )}
+                  </button>
+                )}
+              </div>
             </div>
           </form>
         </div>
