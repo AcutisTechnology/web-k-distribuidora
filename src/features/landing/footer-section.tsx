@@ -98,10 +98,20 @@ export function FooterSection() {
                 <Link href="#about-section" className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
                   Quem somos
                 </Link>
-                <Link href="#catalog-section" className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
+                <Link 
+                  href="https://loja.kdistribuidora.com.br/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors"
+                >
                   Catálogo
                 </Link>
-                <Link href="#courses-section" className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
+                <Link 
+                  href="https://wellaedu.com.br/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors"
+                >
                   Cursos
                 </Link>
                 <Link href="#cadastre-section" className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors">

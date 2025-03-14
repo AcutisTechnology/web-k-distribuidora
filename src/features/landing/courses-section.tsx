@@ -35,7 +35,10 @@ export function CoursesSection() {
           </div>
 
           <div className="flex justify-start lg:justify-start">
-            <button className="bg-black rounded-full h-12 px-6 items-center justify-center gap-3 flex flex-row w-auto">
+            <button 
+              className="bg-black rounded-full h-12 px-6 items-center justify-center gap-3 flex flex-row w-auto"
+              onClick={() => window.open("https://wellaedu.com.br/", "_blank")}
+            >
               <p className="font-syne font-bold text-sm text-white">
                 Ir para cursos
               </p>

@@ -23,13 +23,13 @@ export function AboutSection() {
       />
       {/* Seção de texto e logo */}
       <div className="lg:w-1/2 z-10">
-        <Image
-          src="/images/logo.png"
-          width={110}
-          height={100}
-          alt="Logo"
-          className="w-[90px] h-auto sm:w-[100px] md:w-[110px]"
-        />
+      <Image 
+            src="/images/logo.png" 
+            width={90} 
+            height={90} 
+            alt="Logo"
+            className="max-h-[50px] sm:max-h-[60px] md:max-h-[65px] lg:max-h-[80px]"
+          />
 
         <div className="mt-6 sm:mt-8 md:mt-12 lg:mt-16">
           <p className="text-title font-syne font-semibold text-xl sm:text-2xl md:text-3xl">

@@ -48,7 +48,10 @@ export function CatalogSection() {
               cuidadosamente selecionados para atender às demandas do segmento e
               elevar o padrão dos seus serviços.
             </p>
-            <Button className="mt-4 sm:mt-5 md:mt-6">
+            <Button 
+              className="mt-4 sm:mt-5 md:mt-6"
+              onClick={() => window.open("https://loja.kdistribuidora.com.br/", "_blank")}
+            >
               <p className="font-montserrat font-bold text-white text-xs sm:text-sm">
                 Ir para catálogo
               </p>

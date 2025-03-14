@@ -28,7 +28,7 @@ export function CadastreSection() {
               </p>
               <LinkSimple size={24} className="text-[#A99878]" />
             </button>
-            <button className="flex flex-row gap-2 bg-white bg-opacity-25 px-6 py-5 rounded-full border border-border_primary transition-colors hover:bg-opacity-50 hover:bg-[#ffffff33]">
+            <button onClick={() => window.open("https://wa.me/+5583994188454", "_blank")} className="flex flex-row gap-2 bg-white bg-opacity-25 px-6 py-5 rounded-full border border-border_primary transition-colors hover:bg-opacity-50 hover:bg-[#ffffff33]">
               <p className="font-montserrat font-bold text-white text-base">
                 Contato por WhatsApp
               </p>

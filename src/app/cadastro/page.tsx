@@ -33,7 +33,7 @@ const formSchema = z.object({
   nomeProprietario: z.string().min(3, "Nome do proprietário é obrigatório"),
   cpf: z.string().min(14, "CPF inválido").max(14, "CPF inválido"),
   email: z.string().email("E-mail inválido").optional(),
-  telefoneProprietario: z.string().min(14, "Telefone inválido").max(16, "Telefone inválido").optional(),
+  telefoneProprietario: z.string().min(14, "Telefone inválido").max(16, "Telefone inválido"),
   municipio: z.string().optional(),
   solicitante: z.string().optional(),
 });
@@ -100,7 +100,6 @@ export default function RegistrationForm() {
         const data = await CNPJService.fetch(cnpj.replace(/\D/g, ""));
         setValue("nome", data.razao_social);
         setValue("fantasia", data.estabelecimento.nome_fantasia);
-        setValue("telefone", data.estabelecimento.ddd1 + data.estabelecimento.telefone1);
         setValue("logradouro", data.estabelecimento.logradouro);
         setValue("municipio", data.estabelecimento.estado.nome);
         setValue("uf", data.estabelecimento.estado.sigla);
@@ -202,7 +201,7 @@ export default function RegistrationForm() {
     }
     
     // Validar campos obrigatórios do terceiro passo
-    const fields = ["nomeProprietario", "cpf", "instagram", "solicitante"];
+    const fields = ["nomeProprietario", "cpf", "instagram", "telefoneProprietario", "solicitante"];
     const hasErrors = fields.some(field => !data[field as keyof FormValues] || errors[field as keyof FormValues]);
     
     if (hasErrors) {
@@ -503,7 +502,7 @@ Solicitante: ${data.solicitante || "N/A"}
                 </div>
                 <div className="space-y-1.5">
                   <label className="block text-sm font-montserrat font-medium text-[#141414]">
-                    Telefone <span className="text-red-500">*</span>
+                    Contato do Financeiro <span className="text-red-500">*</span>
                   </label>
                   <Controller
                     name="telefone"
@@ -517,8 +516,7 @@ Solicitante: ${data.solicitante || "N/A"}
                           onAccept={(value) => field.onChange(value)}
                           onBlur={field.onBlur}
                           className={`w-full px-4 py-2.5 rounded-lg font-montserrat border ${errors.telefone ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-[#d6d6d6] focus:border-[#a89777] focus:ring-[#a89777]'} focus:ring-1`}
-                          placeholder="Digite o telefone"
-                          disabled={isDisabled}
+                          placeholder="Digite o telefone do financeiro"
                         />
                       </div>
                     )}
@@ -702,7 +700,7 @@ Solicitante: ${data.solicitante || "N/A"}
                 </div>
                 <div className="space-y-1.5">
                   <label className="block text-sm font-montserrat font-medium text-[#141414]">
-                    WhatsApp
+                    Contato do Proprietário <span className="text-red-500">*</span>
                   </label>
                   <Controller
                     name="telefoneProprietario"
@@ -716,8 +714,7 @@ Solicitante: ${data.solicitante || "N/A"}
                           onAccept={(value) => field.onChange(value)}
                           onBlur={field.onBlur}
                           className={`w-full px-4 py-2.5 rounded-lg font-montserrat border ${errors.telefoneProprietario ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-[#d6d6d6] focus:border-[#a89777] focus:ring-[#a89777]'} focus:ring-1`}
-                          placeholder="Digite o telefone"
-                          disabled={isDisabled}
+                          placeholder="Digite o telefone do proprietário"
                         />
                       </div>
                     )}

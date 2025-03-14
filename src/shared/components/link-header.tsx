@@ -61,14 +61,14 @@ export const LinkHeader = () => {
       <div className="w-[3px] h-[3px] md:w-[3px] md:h-[3px] lg:w-[4px] lg:h-[4px] xl:w-[6px] xl:h-[6px] rounded-full bg-primary" />
       <p
         className={getLinkClass("catalog-section")}
-        onClick={() => scrollToSection("catalog-section")}
+        onClick={() => window.open("https://loja.kdistribuidora.com.br/", "_blank")}
       >
         Catálogo
       </p>
       <div className="w-[3px] h-[3px] md:w-[3px] md:h-[3px] lg:w-[4px] lg:h-[4px] xl:w-[6px] xl:h-[6px] rounded-full bg-primary" />
       <p
         className={getLinkClass("courses-section")}
-        onClick={() => scrollToSection("courses-section")}
+        onClick={() => window.open("https://wellaedu.com.br/", "_blank")}
       >
         Cursos
       </p>
