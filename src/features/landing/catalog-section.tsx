@@ -1,8 +1,9 @@
-import { Stack } from "@phosphor-icons/react";
+import { InstagramLogo, Stack, WhatsappLogo } from "@phosphor-icons/react";
 import Image from "next/image";
 import { Button } from "../../shared/components/button";
 import { AnimatedSection, staggerContainer } from "@/components/ui/animated-section";
 import { motion } from "framer-motion";
+import { MapPin } from "lucide-react";
 
 export function CatalogSection() {
   // Variante para animação dos cards de marcas
@@ -38,22 +39,18 @@ export function CatalogSection() {
                 className="w-[70px] h-[70px] sm:w-[85px] sm:h-[85px] md:w-[100px] md:h-[100px]"
               />
               <p className="font-syne font-bold text-xl sm:text-2xl md:text-3xl text-white">
-                Catálogo completo
+                PRODUTOS PARA PROFISSIONAIS
               </p>
             </div>
             <p className="mt-3 sm:mt-4 md:mt-5 font-montserrat font-normal text-sm sm:text-base md:text-lg text-white">
-              Somos uma distribuidora de diversas marcas no ramo de cosméticos,
-              atendendo exclusivamente profissionais do setor de beleza na
-              Paraíba. Nosso catálogo reúne produtos de alta qualidade,
-              cuidadosamente selecionados para atender às demandas do segmento e
-              elevar o padrão dos seus serviços.
+              Nosso catálogo exclusivo foi feito para quem busca qualidade, tendência e condições diferenciadas. São mais de 500 produtos das melhores marcas, com preços que só profissionais têm acesso.
             </p>
             <Button 
               className="mt-4 sm:mt-5 md:mt-6"
               onClick={() => window.open("https://loja.kdistribuidora.com.br/", "_blank")}
             >
               <p className="font-montserrat font-bold text-white text-xs sm:text-sm">
-                Ir para catálogo
+                Acesse o Catálogo
               </p>
               <Stack className="text-white" size={20} />
             </Button>
@@ -106,6 +103,98 @@ export function CatalogSection() {
             ))}
           </div>
         </AnimatedSection>
+      </div>
+
+      {/* Seção de informações de contato e copyright */}
+      <div className="bg-[#0A0A0A] text-white">
+        <div className="container mx-auto px-4 sm:px-6 py-8 md:py-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Logo e descrição */}
+            <div className="flex flex-col gap-4">
+              <Image
+                src="/images/logo.png"
+                alt="K Distribuidora"
+                width={100}
+                height={100}
+                className="w-[80px] h-auto"
+              />
+              <p className="font-montserrat text-sm text-gray-300 max-w-xs">
+                Distribuidora exclusiva para profissionais de beleza na Paraíba, oferecendo as melhores marcas com preços competitivos.
+              </p>
+            </div>
+
+            {/* Links rápidos
+            <div className="flex flex-col gap-4">
+              <h3 className="font-syne font-bold text-lg">Links Rápidos</h3>
+              <div className="grid grid-cols-2 gap-2">
+                <Link href="#about-section" className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
+                  Quem somos 
+                </Link>
+                <Link 
+                  href="https://loja.kdistribuidora.com.br/" 
+                  target="_blank" 
+                  className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  Catálogo
+                </Link>
+                <Link 
+                  href="https://wellaedu.com.br/" 
+                  target="_blank" 
+                  className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  Cursos
+                </Link>
+                <Link href="#cadastre-section" className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
+                  Contato
+                </Link>
+                <Link href="#diferenciais" className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
+                  Diferenciais
+                </Link>
+                <Link href="#structure-section" className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
+                  Estrutura
+                </Link>
+              </div>
+            </div> */}
+
+            {/* Contato */}
+            <div className="flex flex-col gap-4">
+              <h3 className="font-syne font-bold text-lg">Contato</h3>
+              <div className="flex flex-col gap-3">
+                <a href="https://instagram.com/kicheirodistribuidora" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
+                  <InstagramLogo size={20} />
+                  @kicheirodistribuidora
+                </a>
+                <a href="https://wa.me/83994188454" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
+                  <WhatsappLogo size={20} />
+                  (83) 99418-8454
+                </a>
+                <div className="flex items-start gap-2 font-montserrat text-sm text-gray-300">
+                  <MapPin size={20} className="flex-shrink-0 mt-1" />
+                  <span>Rua Juvenal Mário da Silva, 805 , Manaíra – João Pessoa – Paraíba. 
+                    CEP 58038-480</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Linha divisória */}
+          <div className="h-[1px] bg-gray-800 my-6"></div>
+
+          {/* Copyright */}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="font-montserrat text-xs text-gray-400">
+              © {new Date().getFullYear()} K Distribuidora. Todos os direitos reservados.
+            </p>
+            <div className="flex items-center gap-4">
+              <a href="/politica-de-privacidade" className="font-montserrat text-xs text-gray-400 hover:text-white transition-colors">
+                Política de Privacidade
+              </a>
+              <a href="/termos-de-uso" className="font-montserrat text-xs text-gray-400 hover:text-white transition-colors">
+                Termos de Uso
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

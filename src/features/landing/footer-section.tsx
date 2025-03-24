@@ -3,13 +3,9 @@ import {
   CheckCircle,
   CurrencyDollar,
   Sparkle,
-  Gift,
-  InstagramLogo,
-  WhatsappLogo,
-  MapPin
+  Gift
 } from "@phosphor-icons/react";
 import Image from "next/image";
-import Link from "next/link";
 
 export function FooterSection() {
   return (
@@ -43,11 +39,10 @@ export function FooterSection() {
 
               <div className="flex flex-col gap-3 md:gap-5">
                 <h2 className="font-syne font-bold text-white text-xl sm:text-2xl lg:text-3xl">
-                  Por que escolher a K Distribuidora?
+                O que torna a K Distribuidora sua maior aliada?
                 </h2>
                 <p className="font-montserrat font-normal text-sm sm:text-base lg:text-lg text-white">
-                  Diferenciais que fazem da K Distribuidora a melhor opção para
-                  você, profissional de beleza da Paraíba.
+                Produtos de alta performance, marcas renomadas e preços que fazem a diferença no seu negócio.
                 </p>
               </div>
 
@@ -59,109 +54,15 @@ export function FooterSection() {
                 />
                 <BrandCard
                   icon={<CurrencyDollar color="white" size={20} className="sm:size-[24px]" />}
-                  text="Melhores preços"
+                  text="Preços Exclusivos"
                   className="transform-gpu"
                 />
                 <BrandCard
                   icon={<Gift color="white" size={20} className="sm:size-[24px]" />}
-                  text="Entrega rápida"
+                  text="Atendimento Especializado"
                   className="transform-gpu"
                 />
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Seção de informações de contato e copyright */}
-      <div className="bg-[#0A0A0A] text-white">
-        <div className="container mx-auto px-4 sm:px-6 py-8 md:py-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Logo e descrição */}
-            <div className="flex flex-col gap-4">
-              <Image
-                src="/images/logo.png"
-                alt="K Distribuidora"
-                width={100}
-                height={100}
-                className="w-[80px] h-auto"
-              />
-              <p className="font-montserrat text-sm text-gray-300 max-w-xs">
-                Distribuidora exclusiva para profissionais de beleza na Paraíba, oferecendo as melhores marcas com preços competitivos.
-              </p>
-            </div>
-
-            {/* Links rápidos */}
-            <div className="flex flex-col gap-4">
-              <h3 className="font-syne font-bold text-lg">Links Rápidos</h3>
-              <div className="grid grid-cols-2 gap-2">
-                <Link href="#about-section" className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
-                  Quem somos
-                </Link>
-                <Link 
-                  href="https://loja.kdistribuidora.com.br/" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors"
-                >
-                  Catálogo
-                </Link>
-                <Link 
-                  href="https://wellaedu.com.br/" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors"
-                >
-                  Cursos
-                </Link>
-                <Link href="#cadastre-section" className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
-                  Contato
-                </Link>
-                <Link href="#diferenciais" className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
-                  Diferenciais
-                </Link>
-                <Link href="#structure-section" className="font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
-                  Estrutura
-                </Link>
-              </div>
-            </div>
-
-            {/* Contato */}
-            <div className="flex flex-col gap-4">
-              <h3 className="font-syne font-bold text-lg">Contato</h3>
-              <div className="flex flex-col gap-3">
-                <a href="https://instagram.com/kicheirodistribuidora" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
-                  <InstagramLogo size={20} />
-                  @kicheirodistribuidora
-                </a>
-                <a href="https://wa.me/83994188454" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-montserrat text-sm text-gray-300 hover:text-white transition-colors">
-                  <WhatsappLogo size={20} />
-                  (83) 99418-8454
-                </a>
-                <div className="flex items-start gap-2 font-montserrat text-sm text-gray-300">
-                  <MapPin size={20} className="flex-shrink-0 mt-1" />
-                  <span>Rua Juvenal Mário da Silva, 805 , Manaíra – João Pessoa – Paraíba. 
-                    CEP 58038-480</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Linha divisória */}
-          <div className="h-[1px] bg-gray-800 my-6"></div>
-
-          {/* Copyright */}
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="font-montserrat text-xs text-gray-400">
-              © {new Date().getFullYear()} K Distribuidora. Todos os direitos reservados.
-            </p>
-            <div className="flex items-center gap-4">
-              <a href="/politica-de-privacidade" className="font-montserrat text-xs text-gray-400 hover:text-white transition-colors">
-                Política de Privacidade
-              </a>
-              <a href="/termos-de-uso" className="font-montserrat text-xs text-gray-400 hover:text-white transition-colors">
-                Termos de Uso
-              </a>
             </div>
           </div>
         </div>

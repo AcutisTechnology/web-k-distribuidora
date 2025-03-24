@@ -8,6 +8,7 @@ import { CoursesSection } from "@/features/landing/courses-section";
 import { FooterSection } from "@/features/landing/footer-section";
 import { Header } from "@/features/landing/header";
 import { HeroSection } from "@/features/landing/hero-section";
+import { MapSection } from "@/features/landing/map-section";
 import { StuctureSection } from "@/features/landing/structure-section";
 
 export default function Landing() {
@@ -23,9 +24,10 @@ export default function Landing() {
         <AboutSection />
       </AnimatedSection>
       
-      <AnimatedSection variants={slideInRight}>
-        <CatalogSection />
+      <AnimatedSection>
+        <FooterSection />
       </AnimatedSection>
+
       
       <AnimatedSection variants={slideInLeft}>
         <CoursesSection />
@@ -37,10 +39,11 @@ export default function Landing() {
       
       <AnimatedSection>
         <StuctureSection />
+        <MapSection />
       </AnimatedSection>
       
-      <AnimatedSection>
-        <FooterSection />
+      <AnimatedSection variants={slideInRight}>
+        <CatalogSection />
       </AnimatedSection>
     </AnimatedContainer>
   );

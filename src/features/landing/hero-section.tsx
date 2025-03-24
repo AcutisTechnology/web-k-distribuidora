@@ -8,19 +8,21 @@ import {
   ArrowDownRight,
 } from "@phosphor-icons/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export function HeroSection() {
+  const router = useRouter();
   return (
     <div className="relative flex flex-col lg:flex-row justify-around mx-auto px-6 py-14 bg-[url('/images/background-white.png')] bg-cover bg-center">
       <div className="flex flex-col lg:flex-row gap-14">
         <div className="lg:mr-40 justify-end items-start flex flex-col text-center lg:text-left">
           <p className="font-syne font-bold text-3xl lg:text-5xl">
-            Beleza premium,
-            <br /> preço acessível.
+            Feitos para Especialistas
+            <br /> Beleza.
           </p>
-          <Button className="mt-4 lg:mt-7">
+          <Button className="mt-4 lg:mt-7" onClick={() => router.push("/#about-section")}>
             <p className="font-montserrat font-bold text-white text-sm">
-              Ir para catálogo
+              Saiba mais sobre nossos diferenciais
             </p>
             <Stack className="text-white" size={24} />
           </Button>

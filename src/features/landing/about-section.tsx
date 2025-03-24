@@ -36,20 +36,19 @@ export function AboutSection() {
             Quem somos?
           </p>
           <p className="text-description font-montserrat font-normal text-sm sm:text-base md:text-lg mt-4 sm:mt-5 md:mt-6 lg:mt-8">
-            Mais que uma distribuidora, somos parceiros do segmento. Oferecemos
-            produtos com preços competitivos, suporte técnico e a garantia do
-            melhor. A K Distribuidora nasceu para transformar o mercado de
-            beleza profissional na Paraíba. Com mais de 30 anos de tradição da
-            Kicheiro Cosméticos, conectamos marcas de alta qualidade a
-            profissionais que buscam excelência.
+            São mais de 35 anos conectando as melhores marcas aos profissionais de beleza da
+            Paraíba.  Nossa missão vai além de distribuir produtos de qualidade, somos parceiros no
+            crescimento do seu negócio. 
+              
+            Com um portfólio amplo e selecionado das principais marcas do mundo, oferecemos atendimento especializado e condições exclusivas para transformar seu trabalho em uma experiência única para seus clientes.
           </p>
         </div>
       </div>
 
       {/* Seção de estatísticas */}
       <div className="z-10 w-full lg:w-1/2 flex flex-col gap-3 sm:gap-4 md:gap-6 justify-end items-end mt-6 lg:mt-0">
-        <StatCard value="30" label="Anos no mercado" />
-        <StatCard value="500" label="Produtos no catálogo" />
+        <StatCard value="35" label="Anos impulsionando profissionais da beleza" />
+        <StatCard value="500" label="produtos premium no portfólio" />
       </div>
     </div>
   );

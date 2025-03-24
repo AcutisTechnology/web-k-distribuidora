@@ -60,6 +60,13 @@ export const LinkHeader = () => {
       </p>
       <div className="w-[3px] h-[3px] md:w-[3px] md:h-[3px] lg:w-[4px] lg:h-[4px] xl:w-[6px] xl:h-[6px] rounded-full bg-primary" />
       <p
+        className={getLinkClass("courses-section")}
+        onClick={() => window.open("https://wellaedu.com.br/", "_blank")}
+      >
+        Parceria Wella
+      </p>
+      <div className="w-[3px] h-[3px] md:w-[3px] md:h-[3px] lg:w-[4px] lg:h-[4px] xl:w-[6px] xl:h-[6px] rounded-full bg-primary" />
+      <p
         className={getLinkClass("catalog-section")}
         onClick={() => window.open("https://loja.kdistribuidora.com.br/", "_blank")}
       >
@@ -70,28 +77,21 @@ export const LinkHeader = () => {
         className={getLinkClass("courses-section")}
         onClick={() => window.open("https://wellaedu.com.br/", "_blank")}
       >
-        Cursos
-      </p>
-      <div className="w-[3px] h-[3px] md:w-[3px] md:h-[3px] lg:w-[4px] lg:h-[4px] xl:w-[6px] xl:h-[6px] rounded-full bg-primary" />
-      <p
-        className={getLinkClass("cadastre-section")}
-        onClick={() => scrollToSection("cadastre-section")}
-      >
-        Contato
-      </p>
-      <div className="w-[3px] h-[3px] md:w-[3px] md:h-[3px] lg:w-[4px] lg:h-[4px] xl:w-[6px] xl:h-[6px] rounded-full bg-primary" />
-      <p
-        className={getLinkClass("diferenciais")}
-        onClick={() => scrollToSection("diferenciais")}
-      >
-        Diferenciais
+        Cursos & Capacitação
       </p>
       <div className="w-[3px] h-[3px] md:w-[3px] md:h-[3px] lg:w-[4px] lg:h-[4px] xl:w-[6px] xl:h-[6px] rounded-full bg-primary" />
       <p
         className={getLinkClass("structure-section")}
         onClick={() => scrollToSection("structure-section")}
       >
-        Estrutura
+        Nossa Estrutura
+      </p>
+      <div className="w-[3px] h-[3px] md:w-[3px] md:h-[3px] lg:w-[4px] lg:h-[4px] xl:w-[6px] xl:h-[6px] rounded-full bg-primary" />
+      <p
+        className={getLinkClass("footer-section")}
+        onClick={() => scrollToSection("footer-section")}
+      >
+        Fale conosco
       </p>
     </div>
   );

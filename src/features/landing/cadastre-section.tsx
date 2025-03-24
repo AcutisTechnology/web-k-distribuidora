@@ -1,7 +1,10 @@
 import { LinkSimple, WhatsappLogo } from "@phosphor-icons/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export function CadastreSection() {
+  const router = useRouter();
+
   return (
     <div
       id="cadastre-section"
@@ -14,23 +17,20 @@ export function CadastreSection() {
               Cadastre-se no nosso canal ou entre em contato
             </h3>
             <p className="font-montserrat text-normal text-white text-base lg:text-xl">
-              Nossa venda é exclusiva para profissionais da beleza no estado da
-              Paraíba, caso você se enquadre e tenha interesse de compra de
-              nossos produtos, preencha o formulário a seguir ou então fale
-              conosco através do WhatsApp.
+            Nossa venda é exclusiva para profissionais de beleza da Paraíba. Se você deseja conhecer nosso catálogo ou adquirir nossos produtos, preencha o formulário abaixo ou entre em contato diretamente conosco pelo WhatsApp.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 mt-8 lg:mt-16">
-            <button className="flex flex-row gap-2 bg-[#ffffff] px-6 py-5 rounded-full transition-colors hover:bg-[#f0e6d2]">
+            <button className="flex flex-row gap-2 bg-[#ffffff] px-6 py-5 rounded-full transition-colors hover:bg-[#f0e6d2]" onClick={() => router.push("/cadastro")}>
               <p className="font-montserrat font-bold text-[#A99878] text-base">
-                Cadastre-se no nosso canal
+                Faça seu cadastro
               </p>
               <LinkSimple size={24} className="text-[#A99878]" />
             </button>
             <button onClick={() => window.open("https://wa.me/+5583994188454", "_blank")} className="flex flex-row gap-2 bg-white bg-opacity-25 px-6 py-5 rounded-full border border-border_primary transition-colors hover:bg-opacity-50 hover:bg-[#ffffff33]">
               <p className="font-montserrat font-bold text-white text-base">
-                Contato por WhatsApp
+                Entre em Contato
               </p>
               <WhatsappLogo size={24} color="white" />
             </button>

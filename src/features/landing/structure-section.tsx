@@ -18,14 +18,10 @@ export function StuctureSection() {
 
             <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
               <h2 className="text-xl sm:text-2xl md:text-3xl text-black font-syne font-bold">
-                Nossa estrutura
+                Estrutura
               </h2>
               <p className="font-montserrat text-[#333333] text-sm sm:text-base lg:text-lg font-normal">
-                Nossa distribuidora está localizada em João Pessoa - PB, no
-                bairro de Manaíra. Oferecemos um espaço com 245 m² com sala de
-                atendimento, treinamento, reunião e um estoque bem estruturado.
-                Será um prazer recebê-lo em nossa casa! Agende a sua visita e
-                venha nos conhecer de perto.
+                Nosso espaço foi projetado para oferecer um ambiente especializado, com sala de atendimento climatizada, espaço para treinamentos exclusivos e estoque estruturado para atender às suas necessidades com agilidade.
               </p>
               <Image
                 src="/images/line-structure.png"

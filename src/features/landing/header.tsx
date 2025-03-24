@@ -70,7 +70,7 @@ export function Header() {
             className="flex flex-row items-center gap-2 lg:gap-3 rounded-full border-[1px] h-10 lg:h-12 px-3 lg:px-5 border-border_primary cursor-pointer hover:bg-gray-50 transition-colors"
             onClick={() => router.push("/cadastro")}
           >
-            <p className="font-montserrat font-medium text-xs md:text-xs lg:text-sm xl:text-base whitespace-nowrap">Cadastro CNPJ</p>
+            <p className="font-montserrat font-medium text-xs md:text-xs lg:text-sm xl:text-base whitespace-nowrap">Cadastro</p>
             <User size={isMediumScreen ? 18 : 24} />
           </div>
           {/* <div
@@ -84,7 +84,7 @@ export function Header() {
             className="flex flex-row items-center gap-2 lg:gap-3 rounded-full border-[1px] h-10 lg:h-12 px-3 lg:px-5 border-border_primary bg-primary cursor-pointer hover:bg-opacity-90 transition-colors"
             onClick={() => window.open("https://loja.kdistribuidora.com.br/", "_blank")}
           >
-            <p className="font-montserrat font-medium text-white text-xs md:text-xs lg:text-sm xl:text-base whitespace-nowrap">Catálogo</p>
+            <p className="font-montserrat font-medium text-white text-xs md:text-xs lg:text-sm xl:text-base whitespace-nowrap">Acesse o Catálogo</p>
             <Stack className="text-white" size={isMediumScreen ? 18 : 24} />
           </div>
         </div>
@@ -135,7 +135,7 @@ export function Header() {
             className="font-montserrat font-normal text-base text-black cursor-pointer hover:text-primary transition-colors"
             onClick={() => router.push("/cadastro")}
           >
-            Cadastro CNPJ
+            Cadastro
           </p>
           <div className="w-full h-[1px] bg-[#C2B8A6]" />
           {/* <p
