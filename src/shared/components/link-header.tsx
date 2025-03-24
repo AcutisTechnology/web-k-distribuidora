@@ -45,7 +45,7 @@ export const LinkHeader = () => {
   };
 
   const getLinkClass = (sectionId: string) => {
-    return `font-montserrat text-xs md:text-xs lg:text-sm xl:text-base cursor-pointer transition-colors duration-200 hover:text-primary ${
+    return `font-montserrat text-sm cursor-pointer transition-colors duration-200 hover:text-primary ${
       activeSection === sectionId ? "font-medium text-primary" : "font-regular text-gray-800"
     }`;
   };
@@ -56,7 +56,7 @@ export const LinkHeader = () => {
         className={getLinkClass("about-section")}
         onClick={() => scrollToSection("about-section")}
       >
-        Quem somos?
+        Sobre
       </p>
       <div className="w-[3px] h-[3px] md:w-[3px] md:h-[3px] lg:w-[4px] lg:h-[4px] xl:w-[6px] xl:h-[6px] rounded-full bg-primary" />
       <p
@@ -84,14 +84,14 @@ export const LinkHeader = () => {
         className={getLinkClass("structure-section")}
         onClick={() => scrollToSection("structure-section")}
       >
-        Nossa Estrutura
+        Estrutura
       </p>
       <div className="w-[3px] h-[3px] md:w-[3px] md:h-[3px] lg:w-[4px] lg:h-[4px] xl:w-[6px] xl:h-[6px] rounded-full bg-primary" />
       <p
         className={getLinkClass("footer-section")}
         onClick={() => scrollToSection("footer-section")}
       >
-        Fale conosco
+        Contato
       </p>
     </div>
   );
