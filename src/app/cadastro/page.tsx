@@ -14,26 +14,26 @@ import { EMAILJS_CONFIG } from "@/shared/config/emailjs-config";
 
 // Definindo o schema de validação com Zod
 const formSchema = z.object({
-  cnpj: z.string().min(18, "CNPJ inválido").max(18, "CNPJ inválido"),
-  nome: z.string().min(3, "Nome é obrigatório"),
-  fantasia: z.string().min(3, "Nome fantasia é obrigatório"),
-  natureza: z.string().min(3, "Natureza é obrigatória"),
-  atividade: z.string().min(3, "Atividade é obrigatória"),
-  situacao: z.string().min(3, "Situação é obrigatória"),
-  dataAbertura: z.string().min(8, "Data de abertura é obrigatória"),
-  telefone: z.string().min(14, "Telefone inválido").max(16, "Telefone inválido"),
-  cep: z.string().min(9, "CEP inválido").max(9, "CEP inválido"),
-  logradouro: z.string().min(3, "Rua é obrigatória"),
+  cnpj: z.string().min(18, "CNPJ inválido").max(18, "CNPJ inválido").optional(),
+  nome: z.string().min(3, "Nome é obrigatório").optional(),
+  fantasia: z.string().min(3, "Nome fantasia é obrigatório").optional(),
+  natureza: z.string().min(3, "Natureza é obrigatória").optional(),
+  atividade: z.string().min(3, "Atividade é obrigatória").optional(),
+  situacao: z.string().min(3, "Situação é obrigatória").optional(),
+  dataAbertura: z.string().min(8, "Data de abertura é obrigatória").optional(),
+  telefone: z.string().min(14, "Telefone inválido").max(16, "Telefone inválido").optional(),
+  cep: z.string().min(9, "CEP inválido").max(9, "CEP inválido").optional(),
+  logradouro: z.string().min(3, "Rua é obrigatória").optional(),
   numero: z.string().optional(),
   complemento: z.string().optional(),
-  bairro: z.string().min(3, "Bairro é obrigatório"),
-  cidade: z.string().min(3, "Cidade é obrigatória"),
-  uf: z.string().min(2, "UF é obrigatória").max(2, "UF é obrigatória"),
-  instagram: z.string().min(3, "Instagram é obrigatório"),
-  nomeProprietario: z.string().min(3, "Nome do proprietário é obrigatório"),
-  cpf: z.string().min(14, "CPF inválido").max(14, "CPF inválido"),
+  bairro: z.string().min(3, "Bairro é obrigatório").optional(),
+  cidade: z.string().min(3, "Cidade é obrigatória").optional(),
+  uf: z.string().min(2, "UF é obrigatória").max(2, "UF é obrigatória").optional(),
+  instagram: z.string().min(3, "Instagram é obrigatório").optional(),
+  nomeProprietario: z.string().min(3, "Nome do proprietário é obrigatório").optional(),
+  cpf: z.string().min(14, "CPF inválido").max(14, "CPF inválido").optional(),
   email: z.string().email("E-mail inválido").optional(),
-  telefoneProprietario: z.string().min(14, "Telefone inválido").max(16, "Telefone inválido"),
+  telefoneProprietario: z.string().min(14, "Telefone inválido").max(16, "Telefone inválido").optional(),
   municipio: z.string().optional(),
   solicitante: z.string().optional(),
 });
@@ -114,7 +114,6 @@ export default function RegistrationForm() {
         setValue("complemento", data.estabelecimento.complemento);
         setValue("bairro", data.estabelecimento.bairro);
         setValue("numero", data.estabelecimento.numero);
-        setValue("nomeProprietario", data.razao_social.slice(10));
         setValue("email", data.estabelecimento.email);
         setValue(
           "dataAbertura",
@@ -140,7 +139,7 @@ export default function RegistrationForm() {
       const hasErrors = fields.some(field => errors[field as keyof FormValues]);
       
       if (hasErrors) {
-        alert("Por favor, preencha todos os campos obrigatórios corretamente antes de avançar.");
+        console.log("Erros encontrados:", hasErrors);
         return;
       }
     } else if (step === 2) {
@@ -205,6 +204,7 @@ export default function RegistrationForm() {
     const hasErrors = fields.some(field => !data[field as keyof FormValues] || errors[field as keyof FormValues]);
     
     if (hasErrors) {
+      console.log("Erros encontrados:", fields.filter(field => !data[field as keyof FormValues] || errors[field as keyof FormValues]));
       alert("Por favor, preencha todos os campos obrigatórios corretamente antes de enviar.");
       return;
     }
@@ -733,7 +733,7 @@ Solicitante: ${data.solicitante || "N/A"}
                       disabled={isDisabled}
                       className="w-full px-4 py-2.5 rounded-lg font-montserrat border border-[#d6d6d6] focus:border-[#a89777] focus:ring-1 focus:ring-[#a89777] bg-white appearance-none"
                     >
-                      <option value="">Nenhum</option>
+                      <option value="nenhum">Nenhum</option>
                       <option value="Kamalla">Kamalla</option>
                       <option value="Lucas Iury">Lucas Iury</option>
                       <option value="Marcos">Marcos</option>

@@ -13,20 +13,20 @@ import { EMAILJS_CONFIG } from "@/shared/config/emailjs-config";
 
 // Definindo o schema de validação com Zod
 const formSchema = z.object({
-  cpf: z.string().min(14, "CPF inválido").max(14, "CPF inválido"),
-  nome: z.string().min(3, "Nome é obrigatório"),
-  fantasia: z.string().min(3, "Nome fantasia é obrigatório"),
-  atividade: z.string().min(1, "Atividade é obrigatória"),
-  telefone: z.string().min(14, "Telefone inválido").max(16, "Telefone inválido"),
-  cep: z.string().min(9, "CEP inválido").max(9, "CEP inválido"),
-  logradouro: z.string().min(3, "Rua é obrigatória"),
+  cpf: z.string().min(14, "CPF inválido").max(14, "CPF inválido").optional(),
+  nome: z.string().min(3, "Nome é obrigatório").optional(),
+  fantasia: z.string().min(3, "Nome fantasia é obrigatório").optional(),
+  atividade: z.string().min(1, "Atividade é obrigatória").optional(),
+  telefone: z.string().min(14, "Telefone inválido").max(16, "Telefone inválido").optional(),
+  cep: z.string().min(9, "CEP inválido").max(9, "CEP inválido").optional(),
+  logradouro: z.string().min(3, "Rua é obrigatória").optional(),
   numero: z.string().optional(),
   complemento: z.string().optional(),
-  bairro: z.string().min(3, "Bairro é obrigatório"),
-  cidade: z.string().min(3, "Cidade é obrigatória"),
-  uf: z.string().min(2, "UF é obrigatória").max(2, "UF é obrigatória"),
+  bairro: z.string().min(3, "Bairro é obrigatório").optional(),
+  cidade: z.string().min(3, "Cidade é obrigatória").optional(),
+  uf: z.string().min(2, "UF é obrigatória").max(2, "UF é obrigatória").optional(),
   email: z.string().email("E-mail inválido").optional(),
-  instagram: z.string().min(3, "Instagram é obrigatório"),
+  instagram: z.string().min(3, "Instagram é obrigatório").optional(),
   solicitante: z.string().optional(),
 });
 
@@ -456,7 +456,7 @@ Solicitante: ${data.solicitante || "N/A"}
                     {...register("solicitante")}
                     className="w-full px-4 py-2.5 rounded-lg font-montserrat border border-[#d6d6d6] focus:border-[#a89777] focus:ring-1 focus:ring-[#a89777] bg-white appearance-none"
                   >
-                    <option value="">Nenhum</option>
+                    <option value="Nenhum">Nenhum</option>
                     <option value="Kamalla">Kamalla</option>
                     <option value="Lucas Iury">Lucas Iury</option>
                     <option value="Marcos">Marcos</option>
