@@ -70,27 +70,27 @@ export function Header() {
             className="flex flex-row items-center gap-2 lg:gap-3 rounded-full border-[1px] h-10 lg:h-12 px-3 lg:px-5 border-border_primary cursor-pointer hover:bg-gray-50 transition-colors"
             onClick={() => router.push("/cadastro")}
           >
-            <p className="font-montserrat font-medium text-xs md:text-xs lg:text-sm xl:text-base whitespace-nowrap">Cadastro</p>
-            <User size={isMediumScreen ? 18 : 24} />
+            <p className="font-montserrat font-medium text-xs md:text-xs lg:text-sm xl:text-sm whitespace-nowrap">Cadastre-se</p>
+            <User size={18} />
           </div>
-          {/* <div
-            className="flex flex-row items-center gap-2 lg:gap-3 rounded-full border-[1px] h-10 lg:h-12 px-3 lg:px-5 border-border_primary cursor-pointer hover:bg-gray-50 transition-colors"
-            onClick={() => router.push("/cadastro-cpf")}
-          >
-            <p className="font-montserrat font-medium text-xs md:text-xs lg:text-sm xl:text-base whitespace-nowrap">Cadastro CPF</p>
-            <User size={isMediumScreen ? 18 : 24} />
-          </div> */}
           <div 
             className="flex flex-row items-center gap-2 lg:gap-3 rounded-full border-[1px] h-10 lg:h-12 px-3 lg:px-5 border-border_primary bg-primary cursor-pointer hover:bg-opacity-90 transition-colors"
-            onClick={() => window.open("https://loja.kdistribuidora.com.br/", "_blank")}
+            onClick={() => router.push("/catalogo")}
           >
-            <p className="font-montserrat font-medium text-white text-xs md:text-xs lg:text-sm xl:text-base whitespace-nowrap">Acesse o Catálogo</p>
-            <Stack className="text-white" size={isMediumScreen ? 18 : 24} />
+            <p className="font-montserrat font-medium text-white text-xs md:text-xs lg:text-sm xl:text-sm whitespace-nowrap">Catálogo</p>
+            <Stack className="text-white" size={18} />
           </div>
         </div>
 
         {/* Botões para mobile */}
         <div className="md:hidden flex flex-row items-center gap-2">
+          <div
+            className="flex flex-row items-center gap-2 rounded-full border-[1px] h-9 px-3 border-border_primary cursor-pointer"
+            onClick={() => router.push("/cadastro")}
+          >
+            <p className="font-montserrat font-medium text-xs sm:text-sm">Cadastre-se</p>
+            <User size={18} />
+          </div>
           <button 
             onClick={toggleMenu}
             className="p-2 rounded-full hover:bg-gray-100 transition-colors"
@@ -112,14 +112,14 @@ export function Header() {
           <div className="w-full h-[1px] bg-[#C2B8A6]" />
           <p
             className="font-montserrat font-normal text-base text-black cursor-pointer hover:text-primary transition-colors"
-            onClick={() => window.open("https://loja.kdistribuidora.com.br/", "_blank")}
+            onClick={() => scrollToSection("catalog-section")}
           >
             Nosso catálogo
           </p>
           <div className="w-full h-[1px] bg-[#C2B8A6]" />
           <p
             className="font-montserrat font-normal text-base text-black cursor-pointer hover:text-primary transition-colors"
-            onClick={() => window.open("https://wellaedu.com.br/", "_blank")}
+            onClick={() => scrollToSection("courses-section")}
           >
             Cursos
           </p>
@@ -130,20 +130,6 @@ export function Header() {
           >
             Contato
           </p>
-          <div className="w-full h-[1px] bg-[#C2B8A6]" />
-          <p
-            className="font-montserrat font-normal text-base text-black cursor-pointer hover:text-primary transition-colors"
-            onClick={() => router.push("/cadastro")}
-          >
-            Cadastro
-          </p>
-          <div className="w-full h-[1px] bg-[#C2B8A6]" />
-          {/* <p
-            className="font-montserrat font-normal text-base text-black cursor-pointer hover:text-primary transition-colors"
-            onClick={() => router.push("/cadastro-cpf")}
-          >
-            Cadastro CPF
-          </p> */}
           <div className="w-full h-[1px] bg-[#C2B8A6]" />
           <p
             className="font-montserrat font-normal text-base text-black cursor-pointer hover:text-primary transition-colors"
