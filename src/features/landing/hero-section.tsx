@@ -1,71 +1,61 @@
-import { Button } from "@/shared/components/button";
-import { HighlightButton } from "@/shared/components/highlight-button";
-import {
-  FlowerLotus,
-  Stack,
-  CheckCircle,
-  ShoppingCart,
-  ArrowDownRight,
-} from "@phosphor-icons/react";
+import { Stack, Target, ShieldCheck } from "@phosphor-icons/react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 export function HeroSection() {
-  const router = useRouter();
+
   return (
-    <div className="relative flex flex-col lg:flex-row justify-around mx-auto px-6 py-14 bg-[url('/images/background-white.png')] bg-cover bg-center">
-      <div className="flex flex-col lg:flex-row gap-14">
-        <div className="lg:mr-40 justify-end items-start flex flex-col text-center lg:text-left">
-          <p className="font-syne font-bold text-3xl lg:text-5xl">
-            Feitos para Especialistas
-            <br /> Beleza.
-          </p>
-          <Button className="mt-4 lg:mt-7" onClick={() => router.push("/#about-section")}>
-            <p className="font-montserrat font-bold text-white text-sm">
-              Saiba mais sobre nossos diferenciais
+    <div className="relative flex flex-col lg:flex-row justify-between mx-auto px-6 py-8 bg-[url('/images/hero-background.png')] bg-cover bg-center">
+      <div className="container flex flex-col lg:flex-row justify-between mx-auto px-6 py-14 w-full">
+        <div className="flex flex-col lg:flex-row gap-14">
+          <div className="lg:max-w-xl justify-start items-start flex flex-col text-left z-10">
+            <div className="w-32 h-1 bg-[#141414] mb-6" />
+            <h1 className="font-syne font-bold text-3xl lg:text-5xl text-[#141414] mb-4 whitespace-nowrap">
+              Feitos para
+            </h1>
+            <h1 className="font-syne font-bold text-3xl lg:text-5xl text-[#141414] mb-4">
+              Especialistas em Beleza
+            </h1>
+            <p className="text-[#606060] font-montserrat mb-8">
+              Condições exclusivas para cabeleireiros, barbearias e salões.
             </p>
-            <Stack className="text-white" size={24} />
-          </Button>
-        </div>
+            
+            {/* Botão personalizado */}
+            <a
+              href="#diferenciais"
+              className="flex items-center justify-center px-8 py-3 mb-12 bg-black text-white rounded-full cursor-pointer transition-colors"
+            >
+              <span className="font-montserrat font-medium text-sm">
+                Veja nossos diferenciais
+              </span>
+            </a>
 
-        {/* Botoes de destaque */}
-        <div className="z-20 flex flex-col gap-6 lg:gap-14 mt-8 lg:mt-0">
-          <HighlightButton
-            icon={<FlowerLotus className="text-[#B794F4]" size={24} />}
-          >
-            Distribuidora de cosméticos
-          </HighlightButton>
-          <HighlightButton
-            icon={<CheckCircle className="text-[#4FD1C5]" size={24} />}
-            className="lg:ml-12"
-          >
-            As melhores marcas
-          </HighlightButton>
-          <HighlightButton
-            icon={<ShoppingCart className="text-[#FC8181]" size={24} />}
-            className="lg:ml-8"
-          >
-            Catálogo completo
-          </HighlightButton>
-          <HighlightButton
-            icon={<ArrowDownRight className="text-[#68D391]" size={24} />}
-          >
-            Menor preço garantido
-          </HighlightButton>
-        </div>
-      </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-white p-4 rounded-lg flex flex-col items-center text-center shadow-sm">
+                <ShieldCheck className="text-[#141414] mb-2" size={24} />
+                <p className="font-montserrat text-sm">Distribuidora oficial Wella</p>
+              </div>
+              <div className="bg-white p-4 rounded-lg flex flex-col items-center text-center shadow-sm">
+                <Target className="text-[#141414] mb-2" size={24} />
+                <p className="font-montserrat text-sm">Lançamento em primeira mão</p>
+              </div>
+              <div className="bg-white p-4 rounded-lg flex flex-col items-center text-center shadow-sm">
+                <Stack className="text-[#141414] mb-2" size={24} />
+                <p className="font-montserrat text-sm">Exclusivo para profissionais de beleza</p>
+              </div>
+            </div>
+          </div>
 
-      {/* Imagens */}
-      <div className="absolute bottom-0 right-4 hidden lg:block z-10">
-        <Image src="/images/mulher.png" width={400} height={400} alt="Modelo" />
-      </div>
-      <div className="absolute right-0 top-0 hidden lg:block z-0">
-        <Image
-          src="/images/framer-black.png"
-          width={357}
-          height={350}
-          alt="Framer-black"
-        />
+          <div className="absolute right-0 top-0 bottom-0 w-[500px] bg-[#a89777] rounded-l-full opacity-90 -z-10" />
+          <div className="absolute right-0 bottom-0 hidden lg:block">
+            <Image
+              src="/images/wella-product.png"
+              width={780}
+              height={700}
+              alt="Produtos Wella"
+              className="object-contain"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
