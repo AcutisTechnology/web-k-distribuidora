@@ -9,10 +9,10 @@ export function HeroSection() {
           <div className="lg:max-w-xl justify-start items-start flex flex-col text-left z-10">
             <div className="w-32 h-1 bg-[#141414] mb-6" />
             <h1 className="font-syne font-bold text-3xl lg:text-5xl text-[#141414] mb-4 whitespace-nowrap">
-              Feitos para
+              A escolha de quem
             </h1>
             <h1 className="font-syne font-bold text-3xl lg:text-5xl text-[#141414] mb-4">
-              Especialistas em Beleza
+              Valoriza qualidade.
             </h1>
             <p className="text-[#606060] font-montserrat mb-8">
               Condições exclusivas para cabeleireiros, barbearias e salões.
