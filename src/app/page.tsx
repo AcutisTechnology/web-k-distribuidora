@@ -4,7 +4,6 @@ import {
   AnimatedContainer,
   AnimatedSection,
   slideInLeft,
-  slideInRight,
 } from "@/components/ui/animated-section";
 import { AboutSection } from "@/features/landing/about-section";
 import { CadastreSection } from "@/features/landing/cadastre-section";
