@@ -2,7 +2,6 @@ import { Stack, Target, ShieldCheck } from "@phosphor-icons/react";
 import Image from "next/image";
 
 export function HeroSection() {
-
   return (
     <div className="relative flex flex-col lg:flex-row justify-between mx-auto px-6 py-8 bg-[url('/images/hero-background.png')] bg-cover bg-center">
       <div className="container flex flex-col lg:flex-row justify-between mx-auto px-6 py-14 w-full">
@@ -18,7 +17,7 @@ export function HeroSection() {
             <p className="text-[#606060] font-montserrat mb-8">
               Condições exclusivas para cabeleireiros, barbearias e salões.
             </p>
-            
+
             {/* Botão personalizado */}
             <a
               href="#diferenciais"
@@ -32,15 +31,19 @@ export function HeroSection() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="bg-white p-4 rounded-lg flex flex-col items-center text-center shadow-sm">
                 <ShieldCheck className="text-[#141414] mb-2" size={24} />
-                <p className="font-montserrat text-sm">Distribuidora oficial Wella</p>
+                <p className="font-montserrat text-sm">
+                  Distribuidor oficial Wella Professionals na Paraíba
+                </p>
               </div>
               <div className="bg-white p-4 rounded-lg flex flex-col items-center text-center shadow-sm">
                 <Target className="text-[#141414] mb-2" size={24} />
-                <p className="font-montserrat text-sm">Lançamento em primeira mão</p>
+                <p className="font-montserrat text-sm">Suporte e treinamento</p>
               </div>
               <div className="bg-white p-4 rounded-lg flex flex-col items-center text-center shadow-sm">
                 <Stack className="text-[#141414] mb-2" size={24} />
-                <p className="font-montserrat text-sm">Exclusivo para profissionais de beleza</p>
+                <p className="font-montserrat text-sm">
+                  Entrega rápida e segura
+                </p>
               </div>
             </div>
           </div>

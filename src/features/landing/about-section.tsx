@@ -23,31 +23,36 @@ export function AboutSection() {
       />
       {/* Seção de texto e logo */}
       <div className="lg:w-1/2 z-10">
-      <Image 
-            src="/images/logo.png" 
-            width={90} 
-            height={90} 
-            alt="Logo"
-            className="max-h-[50px] sm:max-h-[60px] md:max-h-[65px] lg:max-h-[80px]"
-          />
+        <Image
+          src="/images/logo.svg"
+          width={90}
+          height={90}
+          alt="Logo"
+          className="max-h-[50px] sm:max-h-[60px] md:max-h-[65px] lg:max-h-[80px]"
+        />
 
         <div className="mt-6 sm:mt-8 md:mt-12 lg:mt-16">
           <p className="text-title font-syne font-semibold text-xl sm:text-2xl md:text-3xl">
             Quem somos?
           </p>
           <p className="text-description font-montserrat font-normal text-sm sm:text-base md:text-lg mt-4 sm:mt-5 md:mt-6 lg:mt-8">
-            São mais de 35 anos conectando as melhores marcas aos profissionais de beleza da
-            Paraíba.  Nossa missão vai além de distribuir produtos de qualidade, somos parceiros no
-            crescimento do seu negócio. 
-              
-            Com um portfólio amplo e selecionado das principais marcas do mundo, oferecemos atendimento especializado e condições exclusivas para transformar seu trabalho em uma experiência única para seus clientes.
+            São mais de 12 anos conectando as melhores marcas aos profissionais
+            de beleza da Paraíba. Nossa missão vai além de distribuir produtos
+            de qualidade, somos parceiros no crescimento do seu negócio. Com um
+            portfólio amplo e selecionado das principais marcas do mundo,
+            oferecemos atendimento especializado e condições exclusivas para
+            transformar seu trabalho em uma experiência única para seus
+            clientes.
           </p>
         </div>
       </div>
 
       {/* Seção de estatísticas */}
       <div className="z-10 w-full lg:w-1/2 flex flex-col gap-3 sm:gap-4 md:gap-6 justify-end items-end mt-6 lg:mt-0">
-        <StatCard value="35" label="Anos impulsionando profissionais da beleza" />
+        <StatCard
+          value="12"
+          label="Desde 2012 impulsionando profissionais da beleza na Paraíba"
+        />
         <StatCard value="500" label="produtos premium no portfólio" />
       </div>
     </div>
