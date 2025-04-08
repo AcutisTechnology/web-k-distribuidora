@@ -81,7 +81,9 @@ export function Header() {
           </div>
           <div
             className="flex flex-row items-center gap-2 lg:gap-3 rounded-full border-[1px] h-10 lg:h-12 px-3 lg:px-5 border-border_primary bg-primary cursor-pointer hover:bg-opacity-90 transition-colors"
-            onClick={() => router.push("/catalogo")}
+            onClick={() =>
+              window.open("https://loja.kdistribuidora.com.br/", "_blank")
+            }
           >
             <p className="font-montserrat font-medium text-white text-xs md:text-xs lg:text-sm xl:text-sm whitespace-nowrap">
               Catálogo
