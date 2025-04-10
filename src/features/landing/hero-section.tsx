@@ -28,7 +28,7 @@ export function HeroSection() {
               className="flex items-center justify-center px-8 py-3 mb-12 bg-[#a89777] text-white rounded-lg cursor-pointer hover:bg-[#97876a] transition-colors"
             >
               <span className="font-montserrat font-medium text-sm">
-                Veja nossos diferenciais
+                Saiba mais sobre nossos diferenciais
               </span>
             </div>
 
@@ -36,19 +36,17 @@ export function HeroSection() {
               <div className="bg-white p-4 rounded-lg flex flex-col items-center text-center shadow-sm">
                 <ShieldCheck className="text-[#141414] mb-2" size={24} />
                 <p className="font-montserrat text-sm">
-                  Distribuidora oficial Wella
+                  Distribuidor oficial Wella Professionals na Paraíba
                 </p>
               </div>
               <div className="bg-white p-4 rounded-lg flex flex-col items-center text-center shadow-sm">
                 <Target className="text-[#141414] mb-2" size={24} />
-                <p className="font-montserrat text-sm">
-                  Lançamento em primeira mão
-                </p>
+                <p className="font-montserrat text-sm">Suporte e treinamento</p>
               </div>
               <div className="bg-white p-4 rounded-lg flex flex-col items-center text-center shadow-sm">
                 <Stack className="text-[#141414] mb-2" size={24} />
                 <p className="font-montserrat text-sm">
-                  Exclusivo para profissionais de beleza
+                  Entrega rápida e segura
                 </p>
               </div>
             </div>
