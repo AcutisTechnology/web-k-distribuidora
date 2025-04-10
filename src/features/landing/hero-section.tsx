@@ -19,9 +19,8 @@ export function HeroSection() {
               </h1>
             </div>
             <p className="text-[#606060] font-montserrat mb-8">
-              Condições exclusivas para cabeleireiros, barbearias e salões.
+              Escolha de quem valoriza qualidade.
             </p>
-
             {/* Botão personalizado */}
             <div
               onClick={() => router.push("/cadastro")}
@@ -31,7 +30,6 @@ export function HeroSection() {
                 Saiba mais sobre nossos diferenciais
               </span>
             </div>
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
               <div className="bg-white p-4 rounded-lg flex flex-col items-center text-center shadow-sm">
                 <ShieldCheck className="text-[#141414] mb-2" size={24} />
@@ -50,15 +48,14 @@ export function HeroSection() {
                 </p>
               </div>
             </div>
-
-            {/* Logo */}
+            {/* Logo
             <Image
               src="/images/logo-marrom.svg"
               width={90}
               height={90}
               alt="Logo K Distribuidora"
               className="max-h-[50px] sm:max-h-[60px] md:max-h-[65px] lg:max-h-[80px] mt-2"
-            />
+            /> */}
           </div>
 
           <div className="absolute right-0 top-0 bottom-0 w-[500px] bg-[#a89777] rounded-l-full opacity-90 -z-10" />

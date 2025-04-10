@@ -2,7 +2,10 @@ import Image from "next/image";
 
 export function DistributorSection() {
   return (
-    <div className="w-full bg-white py-16 md:py-14 relative overflow-hidden">
+    <div
+      className="w-full bg-white py-16 md:py-14 relative overflow-hidden"
+      id="distributor-section"
+    >
       <div className="container mx-auto px-4 md:px-6 relative">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
           {/* Lado esquerdo - Conteúdo textual */}
