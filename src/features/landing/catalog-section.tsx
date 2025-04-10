@@ -1,7 +1,6 @@
-import { InstagramLogo, Stack, WhatsappLogo } from "@phosphor-icons/react";
+import { Stack } from "@phosphor-icons/react";
 import Image from "next/image";
 import { Button } from "../../shared/components/button";
-import { MapPin } from "lucide-react";
 
 export function CatalogSection() {
   return (
@@ -79,85 +78,6 @@ export function CatalogSection() {
                 />
               </div>
             ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Seção de informações de contato e copyright */}
-      <div className="bg-[#0A0A0A] text-white">
-        <div className="container mx-auto px-4 sm:px-6 py-8 md:py-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Logo e descrição */}
-            <div className="flex flex-col gap-4">
-              <Image
-                src="/images/logo.svg"
-                alt="K Distribuidora"
-                width={100}
-                height={100}
-                className="w-[80px] h-auto"
-              />
-              <p className="font-montserrat text-sm text-gray-300 max-w-xs">
-                Distribuidora exclusiva para profissionais de beleza na Paraíba,
-                oferecendo as melhores marcas com preços competitivos.
-              </p>
-            </div>
-
-            {/* Contato */}
-            <div className="flex flex-col gap-4">
-              <h3 className="font-syne font-bold text-lg">Contato</h3>
-              <div className="flex flex-col gap-3">
-                <a
-                  href="https://instagram.com/kicheirodistribuidora"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 font-montserrat text-sm text-gray-300 hover:text-white transition-colors"
-                >
-                  <InstagramLogo size={20} />
-                  @kicheirodistribuidora
-                </a>
-                <a
-                  href="https://wa.me/83994188454"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 font-montserrat text-sm text-gray-300 hover:text-white transition-colors"
-                >
-                  <WhatsappLogo size={20} />
-                  (83) 99418-8454
-                </a>
-                <div className="flex items-start gap-2 font-montserrat text-sm text-gray-300">
-                  <MapPin size={20} className="flex-shrink-0 mt-1" />
-                  <span>
-                    Rua Juvenal Mário da Silva, 805 , Manaíra – João Pessoa –
-                    Paraíba. CEP 58038-480
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Linha divisória */}
-          <div className="h-[1px] bg-gray-800 my-6"></div>
-
-          {/* Copyright */}
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="font-montserrat text-xs text-gray-400">
-              © {new Date().getFullYear()} K Distribuidora. Todos os direitos
-              reservados.
-            </p>
-            <div className="flex items-center gap-4">
-              <a
-                href="/politica-de-privacidade"
-                className="font-montserrat text-xs text-gray-400 hover:text-white transition-colors"
-              >
-                Política de Privacidade
-              </a>
-              <a
-                href="/termos-de-uso"
-                className="font-montserrat text-xs text-gray-400 hover:text-white transition-colors"
-              >
-                Termos de Uso
-              </a>
-            </div>
           </div>
         </div>
       </div>
