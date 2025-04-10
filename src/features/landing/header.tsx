@@ -119,35 +119,30 @@ export function Header() {
             className="font-montserrat font-normal text-base text-black cursor-pointer hover:text-primary transition-colors"
             onClick={() => scrollToSection("about-section")}
           >
-            Quem somos ?
+            Sobre
           </p>
           <div className="w-full h-[1px] bg-[#C2B8A6]" />
           <p
             className="font-montserrat font-normal text-base text-black cursor-pointer hover:text-primary transition-colors"
-            onClick={() => scrollToSection("catalog-section")}
+            onClick={() => scrollToSection("distributor-section")}
           >
-            Nosso catálogo
+            Parceria Wella
           </p>
           <div className="w-full h-[1px] bg-[#C2B8A6]" />
           <p
             className="font-montserrat font-normal text-base text-black cursor-pointer hover:text-primary transition-colors"
-            onClick={() => scrollToSection("courses-section")}
+            onClick={() =>
+              window.open("https://loja.kdistribuidora.com.br/", "_blank")
+            }
           >
-            Cursos
+            Catálogo
           </p>
           <div className="w-full h-[1px] bg-[#C2B8A6]" />
           <p
             className="font-montserrat font-normal text-base text-black cursor-pointer hover:text-primary transition-colors"
-            onClick={() => scrollToSection("cadastre-section")}
+            onClick={() => window.open("https://wellaedu.com.br/", "_blank")}
           >
-            Contato
-          </p>
-          <div className="w-full h-[1px] bg-[#C2B8A6]" />
-          <p
-            className="font-montserrat font-normal text-base text-black cursor-pointer hover:text-primary transition-colors"
-            onClick={() => scrollToSection("diferenciais")}
-          >
-            Diferenciais
+            Cursos & Capacitação
           </p>
           <div className="w-full h-[1px] bg-[#C2B8A6]" />
           <p
@@ -157,6 +152,12 @@ export function Header() {
             Estrutura
           </p>
           <div className="w-full h-[1px] bg-[#C2B8A6]" />
+          <p
+            className="font-montserrat font-normal text-base text-black cursor-pointer hover:text-primary transition-colors"
+            onClick={() => scrollToSection("footer-section")}
+          >
+            Contato
+          </p>
         </div>
       )}
     </header>

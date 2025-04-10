@@ -1,9 +1,15 @@
 import { Stack, Target, ShieldCheck } from "@phosphor-icons/react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 export function HeroSection() {
-  const router = useRouter();
+  const scrollToSection = (sectionId: string) => {
+    setTimeout(() => {
+      document
+        .getElementById(sectionId)
+        ?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
+
   return (
     <div className="relative flex flex-col lg:flex-row justify-between mx-auto px-6 py-8 bg-[url('/images/hero-background.png')] bg-cover bg-center">
       <div className="container flex flex-col lg:flex-row justify-between mx-auto px-6 py-14 w-full">
@@ -23,7 +29,7 @@ export function HeroSection() {
             </p>
             {/* Botão personalizado */}
             <div
-              onClick={() => router.push("/cadastro")}
+              onClick={() => scrollToSection("diferenciais")}
               className="flex items-center justify-center px-8 py-3 mb-12 bg-[#a89777] text-white rounded-lg cursor-pointer hover:bg-[#97876a] transition-colors"
             >
               <span className="font-montserrat font-medium text-sm">
