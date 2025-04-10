@@ -18,6 +18,9 @@ const syne = Syne({
 export const metadata: Metadata = {
   title: "K Distribuidora",
   description: "Beleza preimum, preço acessível.",
+  icons: {
+    icon: "/images/logo.svg",
+  },
 };
 
 export default function RootLayout({
