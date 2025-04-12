@@ -154,7 +154,7 @@ export function Header() {
           <div className="w-full h-[1px] bg-[#C2B8A6]" />
           <p
             className="font-montserrat font-normal text-base text-black cursor-pointer hover:text-primary transition-colors"
-            onClick={() => scrollToSection("footer-section")}
+            onClick={() => window.open("https://wa.me/83994188454", "_blank")}
           >
             Contato
           </p>

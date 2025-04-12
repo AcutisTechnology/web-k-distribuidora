@@ -97,7 +97,7 @@ export const LinkHeader = () => {
       <div className="w-[3px] h-[3px] md:w-[3px] md:h-[3px] lg:w-[4px] lg:h-[4px] xl:w-[6px] xl:h-[6px] rounded-full bg-primary" />
       <p
         className={getLinkClass("footer-section")}
-        onClick={() => scrollToSection("footer-section")}
+        onClick={() => window.open("https://wa.me/83994188454", "_blank")}
       >
         Contato
       </p>

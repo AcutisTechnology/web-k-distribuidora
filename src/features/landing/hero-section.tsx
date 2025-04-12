@@ -17,15 +17,15 @@ export function HeroSection() {
           <div className="lg:max-w-xl justify-start items-start flex flex-col text-left">
             <div className="w-32 h-1 bg-[#141414] mb-6" />
             <h1 className="font-syne font-bold text-3xl lg:text-5xl text-[#141414] mb-2">
-              Feitos para
+              Escolha de quem
             </h1>
             <div className="relative">
               <h1 className="font-syne font-bold text-3xl lg:text-5xl text-[#141414] mb-4">
-                Especialistas em Beleza
+                valoriza qualidade.
               </h1>
             </div>
             <p className="text-[#606060] font-montserrat mb-8">
-              Escolha de quem valoriza qualidade.
+              Condições exclusivas para cabeleireiros, barbearias e salões.
             </p>
             {/* Botão personalizado */}
             <div
@@ -33,7 +33,7 @@ export function HeroSection() {
               className="flex items-center justify-center px-8 py-3 mb-12 bg-[#a89777] text-white rounded-lg cursor-pointer hover:bg-[#97876a] transition-colors"
             >
               <span className="font-montserrat font-medium text-sm">
-                Saiba mais sobre nossos diferenciais
+                Nossos diferenciais
               </span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
