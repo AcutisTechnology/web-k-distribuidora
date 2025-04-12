@@ -66,9 +66,9 @@ export default function Landing() {
               <Image
                 src="/images/logo.svg"
                 alt="K Distribuidora"
-                width={100}
-                height={100}
-                className="w-[80px] h-auto"
+                width={90}
+                height={90}
+                className="w-[80px] h-auto brightness-0 invert"
               />
               <p className="font-montserrat text-sm text-gray-300 max-w-xs">
                 Distribuidora exclusiva para profissionais de beleza na Paraíba,
