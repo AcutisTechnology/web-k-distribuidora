@@ -63,16 +63,13 @@ export function Header() {
 
     try {
       const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        phone: formData.phone,
-        profession: formData.profession,
-        message: formData.description,
+        name: formData.name,
+        message: `Nome: ${formData.name}\nEmail: ${formData.email}\nTelefone: ${formData.phone}\nProfissão: ${formData.profession}\nDescrição: ${formData.description}`,
       };
 
       await emailjs.send(
-        EMAILJS_CONFIG.SERVICE_ID,
-        EMAILJS_CONFIG.TEMPLATE_ID,
+        "service_6l4fmtz",
+        "template_trzd70n",
         templateParams,
         EMAILJS_CONFIG.PUBLIC_KEY
       );
