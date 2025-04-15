@@ -2,7 +2,11 @@
 
 import { useState, useEffect } from "react";
 
-export const LinkHeader = () => {
+interface LinkHeaderProps {
+  onContactClick: () => void;
+}
+
+export const LinkHeader = ({ onContactClick }: LinkHeaderProps) => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   // Detectar a seção ativa durante o scroll
@@ -95,10 +99,7 @@ export const LinkHeader = () => {
         Estrutura
       </p>
       <div className="w-[3px] h-[3px] md:w-[3px] md:h-[3px] lg:w-[4px] lg:h-[4px] xl:w-[6px] xl:h-[6px] rounded-full bg-primary" />
-      <p
-        className={getLinkClass("footer-section")}
-        onClick={() => window.open("https://wa.me/83994188454", "_blank")}
-      >
+      <p className={getLinkClass("footer-section")} onClick={onContactClick}>
         Contato
       </p>
     </div>

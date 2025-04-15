@@ -15,7 +15,10 @@ export function HeroSection() {
       <div className="container flex flex-col mx-auto w-full">
         <div className="flex flex-col gap-8">
           <div className="flex flex-col text-left">
-            <div className="w-32 h-1 bg-[#141414] mb-6" />
+            <p className="font-syne font-bold text-sm lg:text-xl text-[#141414] mb-2">
+              K Distribuidora
+            </p>
+            <div className="w-32 h-1 bg-[#141414] mb-2" />
             <h1 className="font-syne font-bold text-2xl lg:text-5xl text-[#141414] mb-2">
               Escolha de quem
             </h1>
@@ -65,14 +68,6 @@ export function HeroSection() {
                 <p className="font-montserrat text-sm">
                   Entrega rápida e segura
                 </p>
-              </div>
-              <div className="md:mt-5">
-                <Image
-                  src="/images/logo-marrom.svg"
-                  width={90}
-                  height={90}
-                  alt="Logo K Distribuidora"
-                />
               </div>
             </div>
           </div>
