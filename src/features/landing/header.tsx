@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import emailjs from "@emailjs/browser";
 import { EMAILJS_CONFIG } from "@/shared/config/emailjs-config";
+import { IMaskInput } from "react-imask";
 
 export function Header() {
   const router = useRouter();
@@ -92,7 +93,9 @@ export function Header() {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e:
+      | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+      | { target: { name: string; value: string } }
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -259,11 +262,13 @@ export function Header() {
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Telefone
                 </label>
-                <input
-                  type="tel"
+                <IMaskInput
+                  mask="(00) 00000-0000"
                   name="phone"
                   value={formData.phone}
-                  onChange={handleInputChange}
+                  onAccept={(value) =>
+                    setFormData((prev) => ({ ...prev, phone: value }))
+                  }
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                 />
