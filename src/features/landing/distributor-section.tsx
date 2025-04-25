@@ -11,12 +11,12 @@ export function DistributorSection() {
           {/* Lado esquerdo - Conteúdo textual */}
           <div className="w-full md:w-1/2 flex flex-col relative">
             {/* Badge/Logo de distribuidor oficial */}
-            <div className="absolute -top-8 md:-top-16 left-0 w-20 h-20 md:w-28 md:h-28">
+            <div className="absolute -top-8 md:-top-16 left-0">
               <Image
-                src="/images/logo_wella.svg"
+                src="/images/logo-wella.png"
                 alt="Distribuidor Oficial Wella"
-                width={164}
-                height={162}
+                width={250}
+                height={250}
                 className="object-contain"
                 priority
               />
@@ -25,19 +25,20 @@ export function DistributorSection() {
             <div className="pt-16 md:pt-20 mb-6">
               {/* Título com sublinhado */}
               <h2 className="font-syne text-3xl md:text-4xl font-bold text-[#141414] mb-2 mt-2">
-                Somos distribuidor{" "}
+                Parceiros Exclusivos{" "}
                 <span className="relative inline-block">
-                  oficial da Wella
+                  Wella na Paraíba
                   <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-[#141414]"></div>
                 </span>
               </h2>
             </div>
 
             <p className="font-montserrat text-[#606060] text-base md:text-lg mb-8 max-w-lg">
-              Somos os distribuidores exclusivos da Wella na Paraíba, garantindo
-              acesso direto aos produtos da marca, incluindo lançamentos em
-              primeira mão e condições exclusivas. Leve o melhor da coloração e
-              tratamento para seus clientes!
+              Somos os únicos representantes da Wella no estado, o que garante
+              acesso direto aos melhores produtos da marca, incluindo
+              lançamentos em primeira mão e condições exclusivas. Leve para seus
+              clientes o que há de mais avançado em coloração e tratamento
+              capilar.
             </p>
 
             {/* Linha decorativa - mais longa e visível */}
