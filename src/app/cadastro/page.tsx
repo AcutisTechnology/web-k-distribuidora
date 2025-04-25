@@ -93,7 +93,7 @@ export default function RegistrationForm() {
       cep: "",
       logradouro: "",
       numero: "",
-      complemento: "",
+      complemento: " ",
       bairro: "",
       cidade: "",
       uf: "",
