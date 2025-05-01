@@ -126,7 +126,7 @@ export default function RegistrationForm() {
         );
         setValue("situacao", data.estabelecimento.situacao_cadastral);
         setValue("cidade", data.estabelecimento.cidade.nome);
-        setValue("complemento", data.estabelecimento.complemento);
+        setValue("complemento", data.estabelecimento.complemento || ' ');
         setValue("bairro", data.estabelecimento.bairro);
         setValue("numero", data.estabelecimento.numero);
         setValue("email", data.estabelecimento.email);
