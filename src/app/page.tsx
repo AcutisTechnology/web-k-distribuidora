@@ -90,7 +90,7 @@ export default function Landing() {
                   @kicheirodistribuidora
                 </a>
                 <a
-                  href="https://wa.me/83994188454"
+                  href="https://wa.me/+5583994188454"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 font-montserrat text-sm text-gray-300 hover:text-white transition-colors"
