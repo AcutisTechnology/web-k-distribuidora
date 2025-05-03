@@ -373,7 +373,7 @@ Solicitante: ${data.solicitante || "N/A"}
   return (
     <div className="min-h-screen bg-[#faf9f6]">
       {/* Navigation */}
-      <Header />
+      <Header hideLinks={true} />
 
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-6 py-12">

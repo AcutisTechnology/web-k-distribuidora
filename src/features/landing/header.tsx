@@ -7,7 +7,7 @@ import emailjs from "@emailjs/browser";
 import { EMAILJS_CONFIG } from "@/shared/config/emailjs-config";
 import { IMaskInput } from "react-imask";
 
-export function Header() {
+export function Header({ hideLinks = false }: { hideLinks?: boolean }) {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMediumScreen, setIsMediumScreen] = useState(false);
@@ -100,6 +100,26 @@ export function Header() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+  if (hideLinks) {
+    return (
+      <header
+        className={`p-4 sticky top-0 z-50 bg-white transition-shadow duration-300 ${
+          scrolled ? "shadow-md" : "shadow"
+        }`}
+      >
+        <div onClick={() => router.push("/")} className="cursor-pointer">
+          <Image
+            src="/images/logo.svg"
+            width={isMediumScreen ? 80 : 90}
+            height={isMediumScreen ? 80 : 90}
+            alt="Logo"
+            className="max-h-[50px] sm:max-h-[60px] md:max-h-[65px] lg:max-h-[80px]"
+          />
+        </div>
+      </header>
+    );
+  }
 
   return (
     <>
