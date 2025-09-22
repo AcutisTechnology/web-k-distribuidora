@@ -158,7 +158,10 @@ export function Header({ hideLinks = false }: { hideLinks?: boolean }) {
             <div
               className="flex flex-row items-center gap-2 lg:gap-3 rounded-full border-[1px] h-10 lg:h-12 px-3 lg:px-5 border-border_primary bg-primary cursor-pointer hover:bg-opacity-90 transition-colors"
               onClick={() =>
-                window.open("https://loja.kdistribuidora.com.br/", "_blank")
+                window.open(
+                  "https://drive.google.com/drive/folders/1zr0zh-P7R_Lb0L-TOk_yUJQnc_9PO0Dk",
+                  "_blank"
+                )
               }
             >
               <p className="font-montserrat font-medium text-white text-xs md:text-xs lg:text-sm xl:text-sm whitespace-nowrap">
@@ -208,7 +211,10 @@ export function Header({ hideLinks = false }: { hideLinks?: boolean }) {
             <p
               className="font-montserrat font-normal text-base text-black cursor-pointer hover:text-primary transition-colors"
               onClick={() =>
-                window.open("https://loja.kdistribuidora.com.br/", "_blank")
+                window.open(
+                  "https://drive.google.com/drive/folders/1zr0zh-P7R_Lb0L-TOk_yUJQnc_9PO0Dk",
+                  "_blank"
+                )
               }
             >
               Catálogo

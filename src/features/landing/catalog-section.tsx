@@ -33,7 +33,7 @@ export function CatalogSection() {
             <Button
               className="mt-4 sm:mt-5 md:mt-6"
               onClick={() =>
-                window.open("https://loja.kdistribuidora.com.br/", "_blank")
+                window.open("https://drive.google.com/drive/folders/1zr0zh-P7R_Lb0L-TOk_yUJQnc_9PO0Dk", "_blank")
               }
             >
               <p className="font-montserrat font-bold text-white text-xs sm:text-sm">
