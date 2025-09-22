@@ -79,7 +79,10 @@ export const LinkHeader = ({ onContactClick }: LinkHeaderProps) => {
       <p
         className={getLinkClass("catalog-section")}
         onClick={() =>
-          window.open("https://loja.kdistribuidora.com.br/", "_blank")
+          window.open(
+            "https://drive.google.com/drive/folders/1zr0zh-P7R_Lb0L-TOk_yUJQnc_9PO0Dk",
+            "_blank"
+          )
         }
       >
         Catálogo
